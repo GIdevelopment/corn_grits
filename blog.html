@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corn Grits Blog &amp; Insights | Culinary Guides, Milling &amp; Processing Articles</title>
+  <meta name="description" content="Discover curated articles on corn grits: culinary differences between polenta and grits, pizza crust dusting science, sieve mesh calibration, and low-fat brewing adjuncts.">
+  
+  <!-- Google Fonts: Playfair Display + Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Favicon: Golden Corn Particle (Multi-format & Cache-busted) -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico?v=corn2">
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico?v=corn2">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png?v=corn2">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png?v=corn2">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg?v=corn2">
+  <link rel="apple-touch-icon" href="images/favicon.png?v=corn2">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="blog-page">
+
+  <!-- 1. Floating Pill Navigation Bar -->
+  <header class="header-wrap">
+    <div class="navbar-pill">
+      <!-- Logo: Brand + 3D Corn Kernel Particle -->
+      <a href="index.html" class="logo-corn" aria-label="Corn Grits Homepage">
+        <div class="corn-kernel-icon" aria-hidden="true"></div>
+        <span class="logo-brand-text">Corn Grits</span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="nav-links" aria-label="Main Navigation">
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="what-are-grits.html" class="nav-item">About Corn Grits</a>
+        <a href="applications.html" class="nav-item">Applications</a>
+        
+        <!-- Products Dropdown -->
+        <div class="nav-dropdown">
+          <a href="varieties.html" class="nav-item">
+            Products
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <div class="dropdown-menu">
+            <a href="varieties.html#commercial-grades" class="dropdown-link">
+              <span>Grits 101 (Coarse)</span>
+              <span class="dropdown-tag">10–14 Mesh</span>
+            </a>
+            <a href="varieties.html#commercial-grades" class="dropdown-link">
+              <span>Grits 101A (Brewer's)</span>
+              <span class="dropdown-tag">Low-Fat</span>
+            </a>
+            <a href="varieties.html#commercial-grades" class="dropdown-link">
+              <span>Grits 108 (Medium)</span>
+              <span class="dropdown-tag">14–20 Mesh</span>
+            </a>
+            <a href="varieties.html#commercial-grades" class="dropdown-link">
+              <span>Grits 112 (Fine Cut)</span>
+              <span class="dropdown-tag">20–30 Mesh</span>
+            </a>
+          </div>
+        </div>
+
+        <a href="manufacturer.html" class="nav-item">Manufacturer</a>
+        <a href="nutrition.html" class="nav-item">Nutrition</a>
+        <a href="blog.html" class="nav-item is-active"><span class="nav-active-corn" aria-hidden="true"></span>Blog</a>
+      </nav>
+
+      <!-- Right Contact Us Button -->
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <button class="btn-contact" data-open-modal="contact">
+          <span>Contact Us</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+
+        <!-- Mobile Hamburger Toggle -->
+        <button class="mobile-toggle" aria-label="Toggle navigation menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-nav-backdrop"></div>
+  <aside class="mobile-nav-drawer" aria-label="Mobile Navigation">
+    <div class="mobile-drawer-header">
+      <div class="mobile-drawer-brand">
+        <div class="corn-kernel-icon" aria-hidden="true"></div>
+        <strong class="mobile-drawer-logo">Corn Grits</strong>
+      </div>
+      <button class="mobile-drawer-close" aria-label="Close navigation menu">&times;</button>
+    </div>
+    <nav class="mobile-drawer-nav">
+      <a href="index.html" class="mobile-nav-link">
+        <span>Home</span>
+      </a>
+      <a href="what-are-grits.html" class="mobile-nav-link">
+        <span>About Corn Grits</span>
+      </a>
+      <a href="applications.html" class="mobile-nav-link">
+        <span>Applications</span>
+      </a>
+      <a href="varieties.html" class="mobile-nav-link">
+        <span>Products &amp; Grades</span>
+      </a>
+      <a href="varieties.html#commercial-grades" class="mobile-sub-link">&bull; Grits 101, 101A, 108, 112</a>
+      <a href="manufacturer.html" class="mobile-nav-link">
+        <span>Manufacturer</span>
+      </a>
+      <a href="nutrition.html" class="mobile-nav-link">
+        <span>Nutrition &amp; Storage</span>
+      </a>
+      <a href="blog.html" class="mobile-nav-link is-active">
+        <span>Blog &amp; Articles</span>
+        <span class="nav-active-corn" aria-hidden="true"></span>
+      </a>
+    </nav>
+    <div class="mobile-drawer-footer">
+      <button class="btn-contact-hero" data-open-modal="contact" style="width: 100%; justify-content: center;">
+        <span>Get in Touch</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main>
+    <div class="container">
+      
+      <!-- Hero Section -->
+      <section class="blog-hero-section">
+        <div class="blog-hero-eyebrow">
+          <span>🌾 The Corn Grits Journal &bull; Insights &amp; Guides</span>
+        </div>
+        <h1 class="blog-hero-title">Corn Grits <span>Articles &amp; Insights</span></h1>
+        <p class="blog-hero-subtitle">
+          Concise, practical guides covering dry-milling calibrations, pizza crust dusting science, culinary polenta differences, and industrial brewing adjuncts.
+        </p>
+
+        <!-- Category Filter Tabs -->
+        <div class="blog-filter-bar">
+          <button type="button" class="blog-filter-pill is-active" data-filter="all">All Articles (5)</button>
+          <button type="button" class="blog-filter-pill" data-filter="culinary">Culinary &amp; Heritage</button>
+          <button type="button" class="blog-filter-pill" data-filter="baking">Commercial Baking</button>
+          <button type="button" class="blog-filter-pill" data-filter="milling">Industrial Milling</button>
+          <button type="button" class="blog-filter-pill" data-filter="brewing">Brewing Adjuncts</button>
+        </div>
+      </section>
+
+      <!-- Articles Grid -->
+      <section class="blog-grid" id="blogArticlesGrid">
+        
+        <!-- Article 1: Polenta vs Grits -->
+        <article class="blog-card" data-category="culinary" data-article-id="polenta-vs-grits">
+          <div class="blog-card-img-wrap">
+            <img src="images/applications/italian-polenta.jpg" alt="Italian polenta with wild mushrooms and herbs" width="400" height="260" loading="lazy">
+            <span class="blog-card-badge">🍝 Culinary Heritage</span>
+          </div>
+          <div class="blog-card-content">
+            <div>
+              <div class="blog-card-meta">
+                <span>⏱️ 3 Min Read</span> &bull; <span>📅 Culinary Guide</span>
+              </div>
+              <h2 class="blog-card-title">Corn Grits vs. Polenta: What's the Real Difference?</h2>
+              <p class="blog-card-excerpt">
+                While both originate from dried yellow maize, Italian polenta relies on hard flint corn milled into sharp granules, whereas Southern grits derive from softer dent corn. Learn why starch gelatinization and toothsome texture differ.
+              </p>
+            </div>
+            <button type="button" class="btn-read-article" data-read-id="polenta-vs-grits">
+              <span>Read Article &rarr;</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- Article 2: Pizza Crust Dusting -->
+        <article class="blog-card" data-category="baking" data-article-id="pizza-crust-dusting">
+          <div class="blog-card-img-wrap">
+            <img src="images/applications/pizza-crust.jpg" alt="Stone oven pizza with golden corn grits dusted crust" width="400" height="260" loading="lazy">
+            <span class="blog-card-badge">🍕 Commercial Baking</span>
+          </div>
+          <div class="blog-card-content">
+            <div>
+              <div class="blog-card-meta">
+                <span>⏱️ 3 Min Read</span> &bull; <span>📅 Baking Science</span>
+              </div>
+              <h2 class="blog-card-title">Why Top Pizzerias Dust Crusts With Degermed Corn Grits</h2>
+              <p class="blog-card-excerpt">
+                Discover the thermal barrier science that prevents oven scorching and acts as ball bearings under the dough peel to deliver Domino's, Pizza Hut, and artisan stone-oven pizzas' signature blistered crunch.
+              </p>
+            </div>
+            <button type="button" class="btn-read-article" data-read-id="pizza-crust-dusting">
+              <span>Read Article &rarr;</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- Article 3: Sieve Mesh Calibration -->
+        <article class="blog-card" data-category="milling" data-article-id="sieve-mesh-calibration">
+          <div class="blog-card-img-wrap">
+            <img src="images/about-corn-grits.jpg" alt="Granulated corn grits calibrated through industrial sieve screens" width="400" height="260" loading="lazy">
+            <span class="blog-card-badge">⚙️ Industrial Milling</span>
+          </div>
+          <div class="blog-card-content">
+            <div>
+              <div class="blog-card-meta">
+                <span>⏱️ 4 Min Read</span> &bull; <span>📅 Technical Specs</span>
+              </div>
+              <h2 class="blog-card-title">Sieve Mesh Calibration: Choosing Between Grits 101, 108 &amp; 112</h2>
+              <p class="blog-card-excerpt">
+                A concise industrial reference guide to calibrated sieve numbers. From large flaking cuts (10–14 mesh) for breakfast cereals to medium 14–20 mesh for extruded snack collets and fine 20–30 mesh for fast porridge.
+              </p>
+            </div>
+            <button type="button" class="btn-read-article" data-read-id="sieve-mesh-calibration">
+              <span>Read Article &rarr;</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- Article 4: Brewing Adjuncts -->
+        <article class="blog-card" data-category="brewing" data-article-id="brewing-adjuncts">
+          <div class="blog-card-img-wrap">
+            <img src="images/grades/grits-101a.jpg" alt="Brewer's low-fat corn grits 101A" width="400" height="260" loading="lazy">
+            <span class="blog-card-badge">🍺 Brewing Adjuncts</span>
+          </div>
+          <div class="blog-card-content">
+            <div>
+              <div class="blog-card-meta">
+                <span>⏱️ 3 Min Read</span> &bull; <span>📅 Brewery Insights</span>
+              </div>
+              <h2 class="blog-card-title">Low-Fat Extraction (&le; 0.8%): The Secret to Crisp Lagers</h2>
+              <p class="blog-card-excerpt">
+                Commercial brewmasters rely on degermed corn grits 101A as clean fermentation adjuncts. Learn how removing germ oils protects beer foam head retention while lightening body for crisp, refreshing summer lagers.
+              </p>
+            </div>
+            <button type="button" class="btn-read-article" data-read-id="brewing-adjuncts">
+              <span>Read Article &rarr;</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- Article 5: 4:1 Liquid Ratio -->
+        <article class="blog-card" data-category="culinary" data-article-id="creamy-grits-ratio">
+          <div class="blog-card-img-wrap">
+            <img src="images/recipes/cheese-grits.jpg" alt="Rich and creamy Southern cheddar cheese grits" width="400" height="260" loading="lazy">
+            <span class="blog-card-badge">🥣 Kitchen Masterclass</span>
+          </div>
+          <div class="blog-card-content">
+            <div>
+              <div class="blog-card-meta">
+                <span>⏱️ 2 Min Read</span> &bull; <span>📅 Cooking Guide</span>
+              </div>
+              <h2 class="blog-card-title">The 4:1 Golden Liquid Ratio for Velvet-Smooth Grits</h2>
+              <p class="blog-card-excerpt">
+                Never serve lumpy or gritty bowls again. The essential master chef principles: a 4:1 liquid ratio, constant 60-second initial whisk, and emulsifying cold butter and cheese off the heat for maximum creaminess.
+              </p>
+            </div>
+            <button type="button" class="btn-read-article" data-read-id="creamy-grits-ratio">
+              <span>Read Article &rarr;</span>
+            </button>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- Industrial Inquiry Quick Banner -->
+      <section style="background: linear-gradient(135deg, #163E28 0%, #1E462F 60%, #11311F 100%); border-radius: var(--radius-lg); padding: clamp(28px, 4vw, 40px); color: #FFFFFF; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; box-shadow: 0 14px 36px rgba(18, 43, 30, 0.22); border: 1.5px solid rgba(250, 166, 26, 0.35); margin-bottom: 50px;">
+        <div style="max-width: 620px;">
+          <span style="display: inline-block; background: rgba(250, 166, 26, 0.2); color: #FAA61A; font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; padding: 4px 12px; border-radius: 50px; margin-bottom: 10px; border: 1px solid rgba(250, 166, 26, 0.4);">
+            Commercial Grain Supply
+          </span>
+          <h3 style="font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 800; color: #FFFFFF; line-height: 1.25; margin-bottom: 8px;">
+            Need Calibrated Corn Grits for Production?
+          </h3>
+          <p style="font-size: 0.95rem; color: #D1DFD6; line-height: 1.6; margin: 0;">
+            Connect with verified grain millers for bulk supply, custom sieve mesh sizes, and certified low-fat specifications (&le; 0.8%).
+          </p>
+        </div>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <a href="varieties.html#commercial-grades" class="btn-know-more" style="background: #FAA61A; color: #142E1D; font-weight: 700; padding: 12px 24px; font-size: 0.95rem;">
+            <span>View Granulation Grades &rarr;</span>
+          </a>
+          <button class="btn-ghost-green" data-open-modal="contact" style="border-color: #FFFFFF; color: #FFFFFF; padding: 12px 24px; font-size: 0.95rem;">
+            <span>Inquire Bulk Supply</span>
+          </button>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Interactive Article Reading Modal -->
+  <div id="blogArticleModal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalArticleTitle">
+    <div class="modal-card blog-modal-content">
+      <button class="modal-close" data-close-modal="blogArticle" aria-label="Close article dialog">&times;</button>
+      
+      <div class="blog-modal-header-img">
+        <img id="modalArticleImg" src="" alt="">
+      </div>
+
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;">
+        <span id="modalArticleCategory" class="blog-card-badge" style="position: static;"></span>
+        <span id="modalArticleReadTime" style="font-size: 0.78rem; color: #718076; font-weight: 600;"></span>
+      </div>
+
+      <h3 id="modalArticleTitle" style="color: var(--color-forest); font-size: 1.65rem; font-weight: 800; margin: 6px 0 16px; line-height: 1.3;"></h3>
+
+      <div id="modalArticleContent" class="blog-article-body">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <div style="margin-top: 24px; text-align: center; border-top: 1px solid #EBE3D3; padding-top: 18px;">
+        <button type="button" class="btn-ghost-green" data-close-modal="blogArticle" style="padding: 10px 28px;">
+          <span>Close Article &times;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Master Footer -->
+  <footer class="footer-wave">
+    <div class="footer-wave-top"></div>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4>
+            <span class="corn-kernel-icon" style="width: 20px; height: 20px;"></span>
+            Corn Grits
+          </h4>
+          <p class="footer-notice">
+            A complete educational and technical guide to corn grits, milling standards, nutritional values, and industrial applications for food processors, snack makers, and commercial kitchens.
+          </p>
+          <div style="margin-top: 10px; color: var(--color-gold); font-size: 0.85rem; font-weight: 700;">
+            Nature's Goodness in Every Granule
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="what-are-grits.html">About Corn Grits</a></li>
+            <li><a href="applications.html">Applications</a></li>
+            <li><a href="varieties.html">Products</a></li>
+            <li><a href="manufacturer.html">Manufacturer</a></li>
+            <li><a href="nutrition.html">Nutrition &amp; Storage</a></li>
+            <li><a href="blog.html">Blog &amp; Articles</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Product Grades</h4>
+          <ul class="footer-links">
+            <li><a href="varieties.html#commercial-grades">Grits 101 (Coarse)</a></li>
+            <li><a href="varieties.html#commercial-grades">Grits 101A (Brewer's)</a></li>
+            <li><a href="varieties.html#commercial-grades">Grits 108 (Medium)</a></li>
+            <li><a href="varieties.html#commercial-grades">Grits 112 (Fine Cut)</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Inquiries</h4>
+          <p class="footer-notice" style="margin-bottom: 8px;">
+            Bulk commercial orders, custom mesh calibrations, or distributor inquiries:
+          </p>
+          <a href="mailto:contact@corngrits.in" style="display: inline-block; font-size: 0.84rem; color: #FAA61A; font-weight: 700; margin-bottom: 12px; text-decoration: none;">📧 contact@corngrits.in</a>
+          <button class="btn-contact" data-open-modal="contact" style="font-size: 0.8rem; padding: 6px 16px;">
+            <span>Get Quote / Samples</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 Corn Grits &bull; A Complete Guide. All Rights Reserved.
+        </div>
+        <button id="backToTop" class="btn-top" aria-label="Return to top">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+          Back to Top
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Contact Us Modal -->
+  <div id="contactModal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <button id="closeContactModal" class="modal-close" aria-label="Close dialog">&times;</button>
+      
+      <div style="text-align: center; margin-bottom: 20px;">
+        <span style="font-size: 0.8rem; font-weight: 700; color: #FAA61A; text-transform: uppercase; letter-spacing: 0.08em;">Commercial Inquiry</span>
+        <h3 id="modalTitle" style="color: #163E28; font-size: 1.6rem; font-weight: 800; margin-top: 2px;">Inquire for Supply</h3>
+        <p id="modalSubtitle" style="font-size: 0.85rem; color: #5B665E; margin-top: 4px;">Connect with Certified Suppliers &amp; Millers</p>
+      </div>
+
+      <form action="https://formsubmit.co/contact@corngrits.in" method="POST">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_subject" value="New Corn Grits Commercial Inquiry">
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label" for="contactName">Your Name</label>
+            <input type="text" id="contactName" class="form-control" required placeholder="Full Name">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="contactCompany">Company / Business Name</label>
+            <input type="text" id="contactCompany" class="form-control" placeholder="Company Name">
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label" for="contactEmail">Email Address</label>
+            <input type="email" id="contactEmail" class="form-control" required placeholder="name@company.com">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="contactProduct">Product of Interest</label>
+            <select id="contactProduct" class="form-control">
+              <option value="Corn Grits 101 (Coarse / Flaking)">Corn Grits 101 (Coarse / Flaking)</option>
+              <option value="Corn Grits 101A (Brewer's Low-Fat)">Corn Grits 101A (Brewer's Low-Fat)</option>
+              <option value="Corn Grits 108 (Medium Granulation)">Corn Grits 108 (Medium Granulation)</option>
+              <option value="Corn Grits 112 (Fine Cut)">Corn Grits 112 (Fine Cut)</option>
+              <option value="Corn Meal">Corn Meal</option>
+              <option value="Corn Flour">Corn Flour</option>
+              <option value="Maize Broken">Maize Broken</option>
+              <option value="Bulk / Custom Mesh Specification">Bulk / Custom Mesh Specification</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contactMessage">Volume &amp; Requirements</label>
+          <textarea id="contactMessage" class="form-control" rows="3" placeholder="Tell us about required quantity (MT), packaging, or destination..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-contact" style="width: 100%; justify-content: center; padding: 12px; font-size: 0.95rem; font-weight: 700;">
+          <span>Submit Commercial Inquiry &rarr;</span>
+        </button>
+        <div style="text-align: center; margin-top: 14px; font-size: 0.82rem; color: #6A776D;">
+          Prefer direct email? Send specs to: <a href="mailto:contact@corngrits.in" style="color: #163E28; font-weight: 700; text-decoration: underline;">contact@corngrits.in</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

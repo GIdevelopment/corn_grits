@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollReveal();
   initGradeTabs();
   initRecipeCommunity();
+  initBlogFeatures();
 });
 
 /* 1. Header Scroll */
@@ -1344,4 +1345,205 @@ function initRecipeCommunity() {
   updateBadges();
   renderCommunityGrid();
   renderHomePreview();
+}
+
+
+/* --------------------------------------------------------------------------
+   11. Blog Articles & Reader Modal
+   -------------------------------------------------------------------------- */
+function initBlogFeatures() {
+  const articlesGrid = document.querySelector('#blogArticlesGrid');
+  const modal = document.querySelector('#blogArticleModal');
+  if (!articlesGrid && !modal) return;
+
+  const BLOG_ARTICLES = {
+    'polenta-vs-grits': {
+      title: "Corn Grits vs. Polenta: What's the Real Difference?",
+      category: "🍝 Culinary Heritage",
+      readTime: "⏱️ 3 Min Read",
+      image: "images/applications/italian-polenta.jpg",
+      body: `
+        <h4>Two Culinary Traditions, One Golden Grain</h4>
+        <p>At first glance, coarse yellow corn grits and Italian polenta appear interchangeable. Both are derived from dried, ground maize simmered into a hearty porridge. However, their historical origins, kernel varieties, and cooking mechanics differ significantly.</p>
+        <h4>Flint Corn vs. Dent Corn</h4>
+        <p>The primary distinction lies in the grain variety. Traditional Italian polenta is milled from <strong>Flint Corn (Zea mays indurata)</strong>, known as <em>Polenta Bramata</em>. Flint corn features a dense, glassy outer starch layer that produces hard, angular granulations that retain an 'al dente' toothsome bite even after prolonged cooking.</p>
+        <p>In contrast, classic American Southern grits are crafted from <strong>Dent Corn (Zea mays indentata)</strong>. Dent corn is softer and higher in softer starches, releasing an exceptionally rich, velvety creaminess as it gelatinizes over low heat.</p>
+        <div class="blog-takeaways-box">
+          <div class="blog-takeaways-title">Key Culinary Takeaways</div>
+          <ul class="blog-takeaways-list">
+            <li><strong>Texture:</strong> Polenta is toothsome, granular, and firm (ideal for chilling and searing). Grits are creamy, buttery, and soft.</li>
+            <li><strong>Best Cut:</strong> Use Grits 101 (Coarse) for rustic stone-ground Southern texture, or Grits 108 (Medium) for creamy bistro polenta.</li>
+            <li><strong>Finishing:</strong> Polenta embraces parmesan, olive oil, and herbs; Grits excel with aged cheddar, bacon, and farm butter.</li>
+          </ul>
+        </div>
+      `
+    },
+    'pizza-crust-dusting': {
+      title: "Why Top Pizzerias Dust Crusts With Degermed Corn Grits",
+      category: "🍕 Commercial Baking",
+      readTime: "⏱️ 3 Min Read",
+      image: "images/applications/pizza-crust.jpg",
+      body: `
+        <h4>The Secret Beneath the Crust</h4>
+        <p>From global giants like Domino's and Pizza Hut to artisanal Neapolitan pizzerias, professional pizza makers rarely use raw wheat flour to dust the bottom of dough skins. Instead, they rely on degermed corn grits (specifically Medium Cut Grits 108). Here is why.</p>
+        <h4>1. The Ball-Bearing Effect on Oven Peels</h4>
+        <p>Corn grits particles are hard and spherical compared to sticky wheat flour. When scattered across dough preparation tables, grits act as microscopic ball bearings. This allows high-hydration dough to slide effortlessly off wooden or metal pizza peels into scorching 500°F+ ovens without tearing or sticking.</p>
+        <h4>2. High Thermal Scorching Resistance</h4>
+        <p>Wheat flour burns and turns bitter at oven deck temperatures above 450°F, creating acrid smoke and black dust. Corn grits, being dense, low-fat endosperm granules, tolerate high stone-oven heat without burning, roasting instead into aromatic, crunchy golden pearls.</p>
+        <div class="blog-takeaways-box">
+          <div class="blog-takeaways-title">Key Baking Takeaways</div>
+          <ul class="blog-takeaways-list">
+            <li><strong>Recommended Cut:</strong> Grits 108 (14–20 Mesh) is the global pizzeria gold standard.</li>
+            <li><strong>Moisture Shield:</strong> Grits prevent dough from sticking to delivery cardboard and proofing boxes.</li>
+            <li><strong>Signature Bite:</strong> Imparts that blistered rustic crunch beneath every slice.</li>
+          </ul>
+        </div>
+      `
+    },
+    'sieve-mesh-calibration': {
+      title: "Sieve Mesh Calibration: Choosing Between Grits 101, 108 & 112",
+      category: "⚙️ Industrial Milling",
+      readTime: "⏱️ 4 Min Read",
+      image: "images/about-corn-grits.jpg",
+      body: `
+        <h4>The Science of Grain Fractionation</h4>
+        <p>In modern industrial dry milling, yellow maize is cleaned, tempered, dehulled, and degermed to separate pure vitreous endosperm from oil-rich germ and high-fiber bran. The resulting endosperm is fractionated through calibrated rotary plansifters into standardized commercial grades.</p>
+        <h4>Commercial Grade Overview</h4>
+        <p><strong>Grits 101 (Coarse / Flaking):</strong> Retained between 10 to 14 mesh screens. These large, robust particles are pressure-cooked with malt extract and rolled into breakfast corn flakes or simmered in classic stone-ground polenta.</p>
+        <p><strong>Grits 108 (Medium Granulation):</strong> Calibrated between 14 to 20 mesh. The versatile workhorse of the food industry, used in high-shear snack extruders (Cheetos, collets), bakery dustings, and savory coatings.</p>
+        <p><strong>Grits 112 (Fine Cut):</strong> Calibrated between 20 to 30 mesh. Designed for rapid 3-minute hydration in instant breakfast porridges, muffin mixes, and batters.</p>
+        <div class="blog-takeaways-box">
+          <div class="blog-takeaways-title">Industrial Specifications</div>
+          <ul class="blog-takeaways-list">
+            <li><strong>Moisture:</strong> 12.0% – 14.0% maximum for prolonged shelf stability.</li>
+            <li><strong>Fat Content:</strong> Strict &le; 1.0% limit to prevent snack rancidity and extruder die plugging.</li>
+            <li><strong>Purity:</strong> 100% Non-GMO degermed endosperm free of black specks and hull fragments.</li>
+          </ul>
+        </div>
+      `
+    },
+    'brewing-adjuncts': {
+      title: "Low-Fat Extraction (≤ 0.8%): The Secret to Crisp Lagers",
+      category: "🍺 Brewing Adjuncts",
+      readTime: "⏱️ 3 Min Read",
+      image: "images/grades/grits-101a.jpg",
+      body: `
+        <h4>Why Global Breweries Love Corn Grits</h4>
+        <p>Commercial breweries worldwide utilize degermed corn grits (Grade 101A) as cereal adjuncts alongside malted barley in the mash tun. Grits provide pure, highly fermentable starches with zero residual vegetal protein, producing lagers celebrated for crispness, clarity, and refreshing drinkability.</p>
+        <h4>The Fat Rule: Protecting Beer Foam</h4>
+        <p>The single most critical technical metric in brewing grits is fat content. Lipids and corn germ oils are lethal enemies of beer foam; even trace amounts of free oil cause bubbles to coalesce and destroy head retention. Grade 101A is precision-degermed to guarantee fat levels below 0.8% (often &le; 0.6%), preserving a creamy, persistent white foam collar.</p>
+        <div class="blog-takeaways-box">
+          <div class="blog-takeaways-title">Brewing Advantages</div>
+          <ul class="blog-takeaways-list">
+            <li><strong>Lighter Body:</strong> Replaces heavy malt dextrins, creating a dry, thirst-quenching finish.</li>
+            <li><strong>Crystal Clarity:</strong> Low polyphenol and protein content eliminates cold haze.</li>
+            <li><strong>Cost Efficiency:</strong> High starch conversion rate maximizes brewhouse extract yield.</li>
+          </ul>
+        </div>
+      `
+    },
+    'creamy-grits-ratio': {
+      title: "The 4:1 Golden Liquid Ratio for Velvet-Smooth Grits",
+      category: "🥣 Kitchen Masterclass",
+      readTime: "⏱️ 2 Min Read",
+      image: "images/recipes/cheese-grits.jpg",
+      body: `
+        <h4>The Chef's Golden Equation</h4>
+        <p>The most common mistake home cooks and commercial kitchen line chefs make is under-hydrating corn grits. Coarse corn endosperm requires substantial liquid and thermal exposure to fully gelatinize without remaining raw or gritty in the center.</p>
+        <h4>The Golden 4:1 Formula</h4>
+        <p>Always maintain a strict ratio of <strong>4 parts liquid to 1 part corn grits</strong> (by volume). A balanced 50/50 blend of rich chicken or vegetable broth and whole milk produces optimal savory depth and creamy silkiness.</p>
+        <h4>3 Non-Negotiable Rules</h4>
+        <p><strong>1. Steady Whisking:</strong> Never dump grits all at once. Sprinkle them into rolling simmering liquid in a thin, continuous stream while whisking vigorously for the first 60 seconds.</p>
+        <p><strong>2. Low, Covered Simmer:</strong> Lower heat to minimum and cover tightly for 20–25 minutes. Steam circulation allows starch granules to swell evenly.</p>
+        <p><strong>3. Finish With Fat Off the Heat:</strong> Take the pot off the flame before folding in cheese and cold butter. This creates a glossy, stable emulsion that never turns greasy.</p>
+        <div class="blog-takeaways-box">
+          <div class="blog-takeaways-title">Chef Summary</div>
+          <ul class="blog-takeaways-list">
+            <li>1 cup Grits 101 + 2 cups Broth + 2 cups Whole Milk + 1/2 tsp Salt.</li>
+            <li>Simmer 25 minutes on low flame, stirring every 5 minutes.</li>
+            <li>Stir in 1.5 cups aged sharp cheddar and 3 tbsp butter off heat. Serve hot!</li>
+          </ul>
+        </div>
+      `
+    }
+  };
+
+  // Category Filtering
+  const filterPills = document.querySelectorAll('.blog-filter-pill');
+  const cards = document.querySelectorAll('.blog-card');
+
+  filterPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      filterPills.forEach(p => p.classList.remove('is-active'));
+      pill.classList.add('is-active');
+
+      const filterVal = pill.getAttribute('data-filter');
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        if (filterVal === 'all' || cat === filterVal) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Open Article Reader Modal
+  const openArticleModal = (articleId) => {
+    const data = BLOG_ARTICLES[articleId];
+    if (!data || !modal) return;
+
+    const imgEl = modal.querySelector('#modalArticleImg');
+    const catEl = modal.querySelector('#modalArticleCategory');
+    const timeEl = modal.querySelector('#modalArticleReadTime');
+    const titleEl = modal.querySelector('#modalArticleTitle');
+    const contentEl = modal.querySelector('#modalArticleContent');
+
+    if (imgEl) {
+      imgEl.src = data.image;
+      imgEl.alt = data.title;
+    }
+    if (catEl) catEl.textContent = data.category;
+    if (timeEl) timeEl.textContent = data.readTime;
+    if (titleEl) titleEl.textContent = data.title;
+    if (contentEl) contentEl.innerHTML = data.body;
+
+    modal.classList.add('is-active');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeArticleModal = () => {
+    if (!modal) return;
+    modal.classList.remove('is-active');
+    if (!document.querySelector('.modal-overlay.is-active')) {
+      document.body.style.overflow = '';
+    }
+  };
+
+  // Bind Read Buttons
+  document.querySelectorAll('[data-read-id]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const id = btn.getAttribute('data-read-id');
+      openArticleModal(id);
+    });
+  });
+
+  // Bind Modal Close
+  document.querySelectorAll('[data-close-modal="blogArticle"]').forEach(btn => {
+    btn.addEventListener('click', closeArticleModal);
+  });
+
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeArticleModal();
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal && modal.classList.contains('is-active')) {
+      closeArticleModal();
+    }
+  });
 }
