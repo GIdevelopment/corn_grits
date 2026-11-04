@@ -1,0 +1,9 @@
+# Scratch and temporary scripts
+scratch/
+*.log
+.DS_Store
+Thumbs.db
+
+# Unused large temporary raw captures (>25MB each)
+images/6.PNG
+images/7.PNG
