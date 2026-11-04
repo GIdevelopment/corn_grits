@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <!-- Radiant Golden Kernel Gradient -->
+    <radialGradient id="cornGlow" cx="35%" cy="28%" r="68%">
+      <stop offset="0%" stop-color="#FFF4B8"/>
+      <stop offset="22%" stop-color="#FFD659"/>
+      <stop offset="58%" stop-color="#FAA61A"/>
+      <stop offset="88%" stop-color="#E28200"/>
+      <stop offset="100%" stop-color="#B85E00"/>
+    </radialGradient>
+    <!-- Soft 3D Specular Highlight -->
+    <radialGradient id="cornSpecular" cx="30%" cy="25%" r="40%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="45%" stop-color="#FFF8D6" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#FFF8D6" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Warm Ambient Drop Shadow -->
+    <filter id="kernelShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3.5" flood-color="#D47A00" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <!-- Glowing Golden Corn Kernel with signature -25deg tilt -->
+  <g transform="rotate(-20 32 32)">
+    <!-- Base Golden Seed Silhouette with Smooth Curvature -->
+    <path d="M 32 6 C 46 6, 57 19, 57 37 C 57 51, 45 58, 32 58 C 19 58, 7 51, 7 37 C 7 19, 18 6, 32 6 Z"
+          fill="url(#cornGlow)"
+          filter="url(#kernelShadow)"/>
+    <!-- Realistic 3D Specular Sheen -->
+    <ellipse cx="25" cy="22" rx="10" ry="7" fill="url(#cornSpecular)" transform="rotate(-15 25 22)"/>
+    <!-- Crisp Sparkle Point -->
+    <circle cx="22" cy="18" r="2.2" fill="#FFFFFF" opacity="0.9"/>
+  </g>
+</svg>
