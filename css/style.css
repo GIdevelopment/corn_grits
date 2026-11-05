@@ -4767,3 +4767,179 @@ textarea {
     flex-shrink: 0;
   }
 }
+
+/* --------------------------------------------------------------------------
+   14. Featured Manufacturer 3-Units Showcase
+   -------------------------------------------------------------------------- */
+.featured-mfg-showcase {
+  background: linear-gradient(135deg, #113320 0%, #174229 55%, #0D2819 100%);
+  border-radius: 26px;
+  padding: clamp(24px, 4vw, 40px);
+  color: #FFFFFF;
+  border: 1.5px solid rgba(250, 166, 26, 0.45);
+  box-shadow: 0 18px 48px rgba(14, 42, 26, 0.22);
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.featured-mfg-showcase:hover {
+  box-shadow: 0 24px 60px rgba(14, 42, 26, 0.3), 0 0 0 2px rgba(250, 166, 26, 0.5);
+}
+
+.mfg-showcase-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1.5px solid rgba(250, 166, 26, 0.25);
+  padding-bottom: 22px;
+}
+
+.mfg-brand-block {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.mfg-logo-badge {
+  width: 140px;
+  height: 80px;
+  background: #FFFFFF;
+  border-radius: 14px;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  border: 2px solid rgba(250, 166, 26, 0.6);
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.featured-mfg-showcase:hover .mfg-logo-badge {
+  transform: scale(1.03);
+}
+
+.mfg-logo-badge img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.mfg-units-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 992px) {
+  .mfg-units-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .mfg-units-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mfg-unit-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1.5px solid rgba(250, 166, 26, 0.25);
+  border-radius: 18px;
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  position: relative;
+  backdrop-filter: blur(8px);
+}
+
+.mfg-unit-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(250, 166, 26, 0.7);
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(250, 166, 26, 0.4);
+}
+
+.mfg-unit-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(250, 166, 26, 0.16);
+  color: #FAA61A;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 10px;
+  border-radius: 50px;
+  border: 1px solid rgba(250, 166, 26, 0.4);
+  align-self: flex-start;
+  margin-bottom: 12px;
+}
+
+.mfg-unit-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.3;
+  margin: 0 0 6px;
+  letter-spacing: 0.01em;
+}
+
+.mfg-unit-division {
+  font-size: 0.8rem;
+  color: #A3C9B2;
+  font-weight: 600;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.mfg-unit-address {
+  background: rgba(14, 38, 24, 0.85);
+  border: 1px solid rgba(250, 166, 26, 0.3);
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #E8F5EE;
+  margin-bottom: 18px;
+}
+
+.mfg-unit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #FAF8F2;
+  color: #12291A;
+  font-size: 0.84rem;
+  font-weight: 800;
+  padding: 10px 16px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  width: 100%;
+}
+
+.mfg-unit-btn:hover {
+  background: #FAA61A;
+  color: #12291A;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(250, 166, 26, 0.4);
+}
