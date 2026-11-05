@@ -382,6 +382,73 @@ function hideDashboard() {
 // ═══════════════════════════════════════════════════════
 //  DATA — Firebase or Local
 // ═══════════════════════════════════════════════════════
+const DEFAULT_RECIPES = [
+  {
+    id: 'rec_101',
+    title: 'Classic Southern Cheddar Cheese Grits',
+    author: 'Chef Marcus Vance • Southern Hearth',
+    category: 'Savory Mains & Bowls',
+    grade: 'Grits 101 or 108',
+    prepTime: '25 Mins',
+    servings: '4 Servings',
+    image: 'images/recipes/cheese-grits.jpg',
+    description: 'Slow-simmered golden corn grits folded with rich aged sharp cheddar cheese, sweet cream farm butter, and a touch of black pepper. The undisputed king of Southern comfort cooking.',
+    ingredients: '1 cup Coarse Corn Grits\n3 cups Veg / Chicken Broth\n1 cup Whole Milk\n1½ cups Sharp Cheddar\n3 tbsp Butter\nSalt & Pepper to taste',
+    instructions: '1. Bring broth, milk, salt, and 1 tbsp butter to a rolling simmer in a heavy saucepan.\n2. Slowly whisk in corn grits in a steady stream to guarantee a lump-free texture.\n3. Reduce heat to low, cover, and simmer for 20–25 minutes, stirring occasionally until thick.\n4. Remove from heat; fold in shredded cheddar and remaining butter until creamy. Serve hot!',
+    status: 'approved',
+    submittedAt: '2026-10-28T10:00:00Z',
+    approvedAt: '2026-10-28T10:30:00Z'
+  },
+  {
+    id: 'rec_102',
+    title: 'Lowcountry Garlic Butter Shrimp & Grits',
+    author: 'Chef Marcus Vance',
+    category: 'Savory Mains & Bowls',
+    grade: 'Grits 101 (Coarse)',
+    prepTime: '30 Mins',
+    servings: '4 Servings',
+    image: 'images/recipes/shrimp-and-grits.jpg',
+    description: 'Juicy wild shrimp pan-seared with smoked paprika, crisp bacon, and minced garlic, ladled atop a warm, velvety bed of stone-milled coarse corn grits with fresh green scallions.',
+    ingredients: '1 lb Fresh Jumbo Shrimp (peeled & deveined)\n1 cup Coarse Grits 101\n4 slices Thick Bacon\n3 cloves Minced Garlic\n1 tbsp Lemon Juice\n1 cup Whole Milk\n3 cups Chicken Broth\n2 tbsp Butter\nSliced Scallions',
+    instructions: '1. Cook coarse corn grits in salted water and milk until thick, buttery, and smooth. Keep warm.\n2. Fry chopped bacon until crispy in a skillet; remove bacon bits, reserving pan drippings.\n3. Toss seasoned shrimp in hot skillet for 2 minutes per side until pink; stir in garlic and lemon.\n4. Ladle warm grits into bowls, top with seared shrimp, spoon over garlic butter, and garnish with bacon.',
+    status: 'approved',
+    submittedAt: '2026-10-28T11:00:00Z',
+    approvedAt: '2026-10-28T11:30:00Z'
+  },
+  {
+    id: 'rec_103',
+    title: 'Crispy Golden Grit Cakes (Polenta Croquettes)',
+    author: 'Chef Elena Rossi • Trattoria Rustica',
+    category: 'Crispy Snacks & Appetizers',
+    grade: 'Grits 101 or 108',
+    prepTime: '20 Mins + Chill',
+    servings: '6 Servings',
+    image: 'images/recipes/fried-grit-cakes.jpg',
+    description: 'Thick savory grits seasoned with parmesan cheese and cracked herbs, chilled into a block, cut into geometric cakes, and pan-seared to deep golden perfection. Crunchy outside, creamy inside!',
+    ingredients: '1 cup Corn Grits 108 (Medium)\n3½ cups Seasoned Broth\n½ cup Grated Parmesan\n1 tbsp Chopped Rosemary\nOlive Oil / Butter for frying\nFlaky Sea Salt & Coarse Black Pepper',
+    instructions: '1. Cook grits thick; stir in parmesan cheese, fresh chopped rosemary, and black pepper.\n2. Spread into a buttered shallow square dish and chill in refrigerator for 45 minutes until firm.\n3. Slice the chilled block into triangles or squares using a sharp chef\'s knife.\n4. Pan-fry in olive oil over medium-high heat for 4 minutes per side until crackling crisp. Serve with dip!',
+    status: 'approved',
+    submittedAt: '2026-10-29T14:00:00Z',
+    approvedAt: '2026-10-29T14:45:00Z'
+  },
+  {
+    id: 'rec_104',
+    title: 'Wildflower Honey & Butter Breakfast Bowl',
+    author: 'Chef Anita Roy • Heritage Kitchen',
+    category: 'Breakfast Porridge & Bowls',
+    grade: 'Grits 108 or 112',
+    prepTime: '15 Mins',
+    servings: '2 Servings',
+    image: 'images/recipes/honey-butter-grits.jpg',
+    description: 'A wholesome country morning porridge. Medium corn grits cooked gently in milk and cinnamon, finished with a generous swirl of sweet farm butter, raw wildflower honey, toasted pecans, and berries.',
+    ingredients: '¾ cup Corn Grits (Medium)\n2½ cups Milk (or Oat Milk)\n2 tbsp Sweet Butter\n2 tbsp Wildflower Honey\n¼ tsp Ground Cinnamon\nBlueberries & Toasted Pecans',
+    instructions: '1. Bring milk, cinnamon, and a tiny pinch of salt to a gentle simmer in a non-stick pot.\n2. Whisk in corn grits gradually; lower heat to low and simmer for 12–15 minutes until velvety.\n3. Stir in butter until melted and glistening throughout the hot porridge.\n4. Pour into warm bowls; swirl raw wildflower honey on top and garnish with berries and toasted pecans.',
+    status: 'approved',
+    submittedAt: '2026-10-30T09:00:00Z',
+    approvedAt: '2026-10-30T09:30:00Z'
+  }
+];
+
 function loadRecipes() {
   if (useFirebase) {
     // Real-time listener
@@ -400,7 +467,26 @@ function loadRecipes() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       allRecipes = raw ? JSON.parse(raw) : [];
-    } catch(e) { allRecipes = []; }
+      if (!raw || !Array.isArray(allRecipes)) {
+        allRecipes = DEFAULT_RECIPES.slice();
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(allRecipes));
+      } else {
+        // Ensure default recipes exist if never added before, keeping any existing status
+        let modified = false;
+        DEFAULT_RECIPES.forEach(def => {
+          const exists = allRecipes.some(r => r.id === def.id || r.title === def.title);
+          if (!exists) {
+            allRecipes.push({ ...def });
+            modified = true;
+          }
+        });
+        if (modified) {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(allRecipes));
+        }
+      }
+    } catch(e) {
+      allRecipes = DEFAULT_RECIPES.slice();
+    }
     renderAll();
   }
 }
@@ -420,6 +506,7 @@ async function approveRecipe(id) {
     allRecipes[idx].status     = 'approved';
     allRecipes[idx].approvedAt = new Date().toISOString();
     localStorage.setItem(STORAGE_KEY, JSON.stringify(allRecipes));
+    window.dispatchEvent(new Event('storage'));
     renderAll();
     toast('✅ Recipe approved and published live!', 'success');
   }
@@ -432,7 +519,7 @@ async function rejectRecipe(id) {
         status: 'rejected',
         rejectedAt: firebase.firestore.FieldValue.serverTimestamp()
       });
-      toast('Recipe rejected.', 'error');
+      toast('Recipe unpublished and hidden from website.', 'error');
     } catch(e) { toast('Error: ' + e.message, 'error'); }
   } else {
     const idx = allRecipes.findIndex(r => r.id === id);
@@ -440,8 +527,9 @@ async function rejectRecipe(id) {
     allRecipes[idx].status     = 'rejected';
     allRecipes[idx].rejectedAt = new Date().toISOString();
     localStorage.setItem(STORAGE_KEY, JSON.stringify(allRecipes));
+    window.dispatchEvent(new Event('storage'));
     renderAll();
-    toast('Recipe rejected.', 'error');
+    toast('Recipe unpublished and hidden from website.', 'error');
   }
 }
 
@@ -455,10 +543,18 @@ async function deleteRecipe(id) {
   } else {
     allRecipes = allRecipes.filter(r => r.id !== id);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(allRecipes));
+    window.dispatchEvent(new Event('storage'));
     renderAll();
     toast('🗑️ Recipe deleted permanently.', 'success');
   }
 }
+
+// Listen for updates from other tabs
+window.addEventListener('storage', function(e) {
+  if (!e.key || e.key === STORAGE_KEY) {
+    if (!useFirebase) loadRecipes();
+  }
+});
 
 // ═══════════════════════════════════════════════════════
 //  RENDER

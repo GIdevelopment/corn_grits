@@ -710,37 +710,71 @@ function initRecipeCommunity() {
   const DEFAULT_RECIPES = [
     {
       id: 'rec_101',
-      title: 'Spicy Cajun Shrimp & Golden Grits',
-      author: 'Chef Marcus Vance',
+      title: 'Classic Southern Cheddar Cheese Grits',
+      author: 'Chef Marcus Vance • Southern Hearth',
       category: 'Savory Mains & Bowls',
-      grade: 'Grits 101 (Coarse / Flaking)',
-      prepTime: '30 Mins',
+      grade: 'Grits 101 or 108',
+      prepTime: '25 Mins',
       servings: '4 Servings',
-      image: 'images/recipes/shrimp-and-grits.jpg',
-      ingredients: '1 lb Fresh Jumbo Shrimp (peeled & deveined)\n1 cup Coarse Corn Grits 101\n4 slices Thick Smoked Bacon\n3 cloves Minced Garlic\n1 tbsp Cajun Creole Seasoning\n1 cup Whole Milk\n3 cups Chicken Broth\n2 tbsp Unsalted Butter\n2 tbsp Sliced Green Scallions\nFresh Lemon Wedges',
-      instructions: '1. In a heavy saucepan, bring chicken broth and whole milk to a rolling boil. Whisk in coarse corn grits in a steady stream to avoid lumps.\n2. Lower heat to minimum, cover tightly, and simmer for 25 minutes, stirring occasionally until velvety and thick. Whisk in 1 tbsp butter and pinch of salt.\n3. In a large skillet over medium-high heat, fry chopped bacon until crisp. Remove bacon with a slotted spoon, keeping the flavorful drippings in the pan.\n4. Toss shrimp with cajun seasoning. Sauté in the hot bacon drippings for 2 minutes per side until pink and succulent. Stir in minced garlic and lemon juice for 30 seconds.\n5. Spoon warm golden grits into bowls, top with sautéed cajun shrimp, drizzle garlic butter pan sauce, and garnish with crisp bacon and scallions.',
+      image: 'images/recipes/cheese-grits.jpg',
+      description: 'Slow-simmered golden corn grits folded with rich aged sharp cheddar cheese, sweet cream farm butter, and a touch of black pepper. The undisputed king of Southern comfort cooking.',
+      ingredients: '1 cup Coarse Corn Grits\n3 cups Veg / Chicken Broth\n1 cup Whole Milk\n1½ cups Sharp Cheddar\n3 tbsp Butter\nSalt & Pepper to taste',
+      instructions: '1. Bring broth, milk, salt, and 1 tbsp butter to a rolling simmer in a heavy saucepan.\n2. Slowly whisk in corn grits in a steady stream to guarantee a lump-free texture.\n3. Reduce heat to low, cover, and simmer for 20–25 minutes, stirring occasionally until thick.\n4. Remove from heat; fold in shredded cheddar and remaining butter until creamy. Serve hot!',
       status: 'approved',
-      createdAt: '2026-10-28T10:00:00Z',
+      submittedAt: '2026-10-28T10:00:00Z',
       approvedAt: '2026-10-28T10:30:00Z'
     },
     {
       id: 'rec_102',
-      title: 'Crispy Pan-Seared Rosemary Grit Cakes',
+      title: 'Lowcountry Garlic Butter Shrimp & Grits',
+      author: 'Chef Marcus Vance',
+      category: 'Savory Mains & Bowls',
+      grade: 'Grits 101 (Coarse)',
+      prepTime: '30 Mins',
+      servings: '4 Servings',
+      image: 'images/recipes/shrimp-and-grits.jpg',
+      description: 'Juicy wild shrimp pan-seared with smoked paprika, crisp bacon, and minced garlic, ladled atop a warm, velvety bed of stone-milled coarse corn grits with fresh green scallions.',
+      ingredients: '1 lb Fresh Jumbo Shrimp (peeled & deveined)\n1 cup Coarse Grits 101\n4 slices Thick Bacon\n3 cloves Minced Garlic\n1 tbsp Lemon Juice\n1 cup Whole Milk\n3 cups Chicken Broth\n2 tbsp Butter\nSliced Scallions',
+      instructions: '1. Cook coarse corn grits in salted water and milk until thick, buttery, and smooth. Keep warm.\n2. Fry chopped bacon until crispy in a skillet; remove bacon bits, reserving pan drippings.\n3. Toss seasoned shrimp in hot skillet for 2 minutes per side until pink; stir in garlic and lemon.\n4. Ladle warm grits into bowls, top with seared shrimp, spoon over garlic butter, and garnish with bacon.',
+      status: 'approved',
+      submittedAt: '2026-10-28T11:00:00Z',
+      approvedAt: '2026-10-28T11:30:00Z'
+    },
+    {
+      id: 'rec_103',
+      title: 'Crispy Golden Grit Cakes (Polenta Croquettes)',
       author: 'Chef Elena Rossi • Trattoria Rustica',
       category: 'Crispy Snacks & Appetizers',
-      grade: 'Grits 108 (Medium Granulation)',
+      grade: 'Grits 101 or 108',
       prepTime: '20 Mins + Chill',
       servings: '6 Servings',
       image: 'images/recipes/fried-grit-cakes.jpg',
-      ingredients: '1 cup Corn Grits 108 (Medium)\n3.5 cups Seasoned Vegetable Broth\n1/2 cup Freshly Grated Parmesan Cheese\n1 tbsp Fresh Rosemary (finely chopped)\n2 tbsp Extra Virgin Olive Oil\n1 tbsp Farm Butter\nFlaky Maldon Sea Salt & Coarse Black Pepper',
-      instructions: '1. Bring vegetable broth to a boil in a medium pot. Whisk in medium corn grits and cook over low heat for 18 minutes until very thick.\n2. Remove from heat; fold in grated parmesan, chopped rosemary, butter, salt, and freshly ground black pepper.\n3. Line an 8x8 inch baking dish with parchment and lightly grease. Spread the hot grits into an even 3/4-inch thick layer. Refrigerate for 45 minutes until firm and chilled.\n4. Invert onto a cutting board and cut into neat triangles or squares.\n5. Heat olive oil in a cast-iron skillet over medium-high heat. Fry grit cakes for 4–5 minutes per side without crowding until deeply golden and crackling crisp. Drain on paper towels, sprinkle with flaky sea salt, and serve with garlic aioli or tomato coulis.',
+      description: 'Thick savory grits seasoned with parmesan cheese and cracked herbs, chilled into a block, cut into geometric cakes, and pan-seared to deep golden perfection. Crunchy outside, creamy inside!',
+      ingredients: '1 cup Corn Grits 108 (Medium)\n3½ cups Seasoned Broth\n½ cup Grated Parmesan\n1 tbsp Chopped Rosemary\nOlive Oil / Butter for frying\nFlaky Sea Salt & Coarse Black Pepper',
+      instructions: '1. Cook grits thick; stir in parmesan cheese, fresh chopped rosemary, and black pepper.\n2. Spread into a buttered shallow square dish and chill in refrigerator for 45 minutes until firm.\n3. Slice the chilled block into triangles or squares using a sharp chef\'s knife.\n4. Pan-fry in olive oil over medium-high heat for 4 minutes per side until crackling crisp. Serve with dip!',
       status: 'approved',
-      createdAt: '2026-10-29T14:00:00Z',
+      submittedAt: '2026-10-29T14:00:00Z',
       approvedAt: '2026-10-29T14:45:00Z'
+    },
+    {
+      id: 'rec_104',
+      title: 'Wildflower Honey & Butter Breakfast Bowl',
+      author: 'Chef Anita Roy • Heritage Kitchen',
+      category: 'Breakfast Porridge & Bowls',
+      grade: 'Grits 108 or 112',
+      prepTime: '15 Mins',
+      servings: '2 Servings',
+      image: 'images/recipes/honey-butter-grits.jpg',
+      description: 'A wholesome country morning porridge. Medium corn grits cooked gently in milk and cinnamon, finished with a generous swirl of sweet farm butter, raw wildflower honey, toasted pecans, and berries.',
+      ingredients: '¾ cup Corn Grits (Medium)\n2½ cups Milk (or Oat Milk)\n2 tbsp Sweet Butter\n2 tbsp Wildflower Honey\n¼ tsp Ground Cinnamon\nBlueberries & Toasted Pecans',
+      instructions: '1. Bring milk, cinnamon, and a tiny pinch of salt to a gentle simmer in a non-stick pot.\n2. Whisk in corn grits gradually; lower heat to low and simmer for 12–15 minutes until velvety.\n3. Stir in butter until melted and glistening throughout the hot porridge.\n4. Pour into warm bowls; swirl raw wildflower honey on top and garnish with berries and toasted pecans.',
+      status: 'approved',
+      submittedAt: '2026-10-30T09:00:00Z',
+      approvedAt: '2026-10-30T09:30:00Z'
     }
   ];
 
-  // Storage Helpers
+  // Storage Helpers — preserving user unpublish/delete actions
   function getRecipes() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
@@ -749,9 +783,21 @@ function initRecipeCommunity() {
         return DEFAULT_RECIPES.slice();
       }
       const parsed = JSON.parse(raw);
-      if (!Array.isArray(parsed) || parsed.length === 0) {
+      if (!Array.isArray(parsed)) {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(DEFAULT_RECIPES));
         return DEFAULT_RECIPES.slice();
+      }
+      // Merge missing default signature recipes if not yet present
+      let modified = false;
+      DEFAULT_RECIPES.forEach(def => {
+        const exists = parsed.some(r => r.id === def.id || r.title === def.title);
+        if (!exists) {
+          parsed.push({ ...def });
+          modified = true;
+        }
+      });
+      if (modified) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed));
       }
       return parsed;
     } catch (e) {
@@ -762,6 +808,7 @@ function initRecipeCommunity() {
   function saveRecipes(recipes) {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(recipes));
+      window.dispatchEvent(new CustomEvent('corngrits_recipes_updated', { detail: recipes }));
     } catch (e) {
       console.error('Failed to save recipes to localStorage', e);
     }
@@ -924,76 +971,8 @@ function initRecipeCommunity() {
   function renderCommunityGrid() {
     const grid = document.querySelector('#communityRecipesGrid');
     if (!grid) return;
-
     const recipes = getRecipes().filter(r => r.status === 'approved');
-
-    if (recipes.length === 0) {
-      grid.innerHTML = `
-        <div style="grid-column: 1 / -1; background: #FAF8F2; border: 1.5px dashed #D5CEBE; border-radius: 16px; padding: 36px 20px; text-align: center;">
-          <span style="font-size: 2.2rem; display: block; margin-bottom: 8px;">🍳</span>
-          <strong style="color: var(--color-forest); font-size: 1.1rem; display: block; margin-bottom: 6px;">No Community Recipes Published Yet</strong>
-          <p style="font-size: 0.88rem; color: #5B665E; max-width: 460px; margin: 0 auto 16px;">Be the first chef or home cook to share your favorite corn grits dish with the community!</p>
-          <button type="button" class="btn-know-more btn-upload-recipe-main" data-open-modal="recipeUpload">
-            <span>🍳 Upload Your Recipe &rarr;</span>
-          </button>
-        </div>`;
-      // Re-bind upload button
-      grid.querySelectorAll('[data-open-modal="recipeUpload"]').forEach(b => {
-        b.addEventListener('click', () => openModal(uploadModal));
-      });
-      return;
-    }
-
-    grid.innerHTML = recipes.map(r => {
-      const ingLines = (r.ingredients || '')
-        .split('\n')
-        .map(s => s.trim())
-        .filter(Boolean);
-      const ingPreview = ingLines.slice(0, 4);
-      const ingRemaining = ingLines.length > 4 ? `+${ingLines.length - 4} more` : '';
-
-      return `
-        <article class="community-recipe-card" data-recipe-id="${r.id}">
-          <div class="recipe-img-wrap">
-            <img src="${r.image || 'images/recipes/cheese-grits.jpg'}" alt="${r.title}" width="400" height="260" loading="lazy">
-            <span class="recipe-badge-floating">
-              <span>⏱️ ${r.prepTime || '25 Mins'}</span> &bull; <span>🍽️ ${r.servings || '4 Servings'}</span>
-            </span>
-            <span class="badge-chef-approved">
-              <span>✨ Approved Recipe</span>
-            </span>
-          </div>
-          <div class="recipe-content">
-            <div>
-              <span class="recipe-tag-grade">${r.grade || 'Corn Grits'}</span>
-              <h4 class="recipe-title" style="margin-top: 4px;">${r.title}</h4>
-              <div class="recipe-author-byline">
-                <span>👨‍🍳 By <strong>${r.author || 'Community Chef'}</strong></span>
-                <span>&bull;</span>
-                <span>📂 ${r.category || 'Dishes'}</span>
-              </div>
-              <ul class="recipe-ingredients-list" style="margin-bottom: 8px;">
-                ${ingPreview.map(ing => `<li class="recipe-ingredient-chip">${ing}</li>`).join('')}
-                ${ingRemaining ? `<li class="recipe-ingredient-chip" style="background: #FFF5DD; color: #8C5E11; font-weight: 700;">${ingRemaining}</li>` : ''}
-              </ul>
-            </div>
-            <div>
-              <button type="button" class="btn-view-recipe" data-view-recipe="${r.id}">
-                <span>View Full Recipe &amp; Cooking Steps 📖</span>
-              </button>
-            </div>
-          </div>
-        </article>
-      `;
-    }).join('');
-
-    // Bind "View Full Recipe" buttons
-    grid.querySelectorAll('[data-view-recipe]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const id = btn.getAttribute('data-view-recipe');
-        openRecipeDetail(id);
-      });
-    });
+    renderApprovedGrid(recipes, grid);
   }
 
   // Render Homepage Preview Card (index.html)
@@ -1475,6 +1454,33 @@ function initRecipeCommunity() {
       toast.style.transform = 'translateX(-50%) translateY(100px)';
     }, 4000);
   }
+
+  // ── Real-time sync: re-render grid when admin changes localStorage from another tab ──
+  window.addEventListener('storage', function(e) {
+    if (!e.key || e.key === STORAGE_KEY) {
+      renderCommunityGrid();
+      renderHomePreview();
+      updateBadges();
+    }
+  });
+
+  window.addEventListener('corngrits_recipes_updated', function() {
+    renderCommunityGrid();
+    renderHomePreview();
+    updateBadges();
+  });
+
+  // ── Polling fallback (handles same-tab admin edits and fast tab switching) ──
+  let _lastSnapshot = localStorage.getItem(STORAGE_KEY);
+  setInterval(function() {
+    const current = localStorage.getItem(STORAGE_KEY);
+    if (current !== _lastSnapshot) {
+      _lastSnapshot = current;
+      renderCommunityGrid();
+      renderHomePreview();
+      updateBadges();
+    }
+  }, 1200);
 
   // Initial runs
   updateBadges();
