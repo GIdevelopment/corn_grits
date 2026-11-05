@@ -8,629 +8,169 @@
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png?v=corn2">
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png?v=corn2">
   <link rel="shortcut icon" href="images/favicon.ico?v=corn2">
+
+  <!-- Firebase SDK (compat v9) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --green: #163E28;
-      --gold: #FAA61A;
-      --cream: #FAF8F2;
-      --red: #C0392B;
-      --lightred: #FFF0EE;
-      --lightgreen: #EAF5EC;
-      --border: #E6D2B0;
-      --text: #2C3E50;
-      --muted: #7F8C8D;
+      --green: #163E28; --gold: #FAA61A; --cream: #FAF8F2;
+      --red: #C0392B; --lightred: #FFF0EE; --lightgreen: #EAF5EC;
+      --border: #E6D2B0; --text: #2C3E50; --muted: #7F8C8D;
       --shadow: 0 4px 24px rgba(22,62,40,0.10);
     }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #F4F6F8; color: var(--text); min-height: 100vh; }
 
-    body {
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      background: #F4F6F8;
-      color: var(--text);
-      min-height: 100vh;
-    }
-
-    /* ───── LOGIN SCREEN ───── */
-    #loginScreen {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 20px;
-    }
-
-    .login-card {
-      background: white;
-      border-radius: 20px;
-      padding: 48px 44px 44px;
-      box-shadow: var(--shadow);
-      width: 100%;
-      max-width: 420px;
-      text-align: center;
-    }
-
-    .login-logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 24px;
-    }
-
-    .login-logo span.corn-emoji {
-      font-size: 2rem;
-    }
-
-    .login-logo span.brand {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--green);
-    }
-
-    .login-card h2 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--green);
-      margin-bottom: 6px;
-    }
-
-    .login-card p.sub {
-      font-size: 0.88rem;
-      color: var(--muted);
-      margin-bottom: 28px;
-    }
-
-    .form-group {
-      text-align: left;
-      margin-bottom: 18px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.84rem;
-      font-weight: 600;
-      color: var(--green);
-      margin-bottom: 6px;
-    }
-
-    .form-group input {
-      width: 100%;
-      padding: 12px 16px;
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      font-size: 0.95rem;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    .form-group input:focus {
-      border-color: var(--gold);
-    }
-
-    .btn-login {
-      width: 100%;
-      padding: 14px;
-      background: var(--green);
-      color: white;
-      border: none;
-      border-radius: 10px;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.2s;
-      margin-top: 4px;
-    }
-
-    .btn-login:hover { background: #1f5a3a; }
-
-    .login-error {
-      background: var(--lightred);
-      color: var(--red);
-      border-radius: 8px;
-      padding: 10px 14px;
-      font-size: 0.84rem;
-      margin-top: 14px;
-      display: none;
-      text-align: left;
-    }
-
+    /* ── LOGIN ── */
+    #loginScreen { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 20px; }
+    .login-card { background: white; border-radius: 20px; padding: 48px 44px 44px; box-shadow: var(--shadow); width: 100%; max-width: 420px; text-align: center; }
+    .login-logo { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 24px; }
+    .login-logo .corn { font-size: 2rem; }
+    .login-logo .brand { font-size: 1.5rem; font-weight: 800; color: var(--green); }
+    .login-card h2 { font-size: 1.3rem; font-weight: 700; color: var(--green); margin-bottom: 6px; }
+    .login-card p.sub { font-size: 0.88rem; color: var(--muted); margin-bottom: 28px; }
+    .form-group { text-align: left; margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 0.84rem; font-weight: 600; color: var(--green); margin-bottom: 6px; }
+    .form-group input { width: 100%; padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 10px; font-size: 0.95rem; outline: none; transition: border-color 0.2s; }
+    .form-group input:focus { border-color: var(--gold); }
+    .btn-login { width: 100%; padding: 14px; background: var(--green); color: white; border: none; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: background 0.2s; margin-top: 4px; }
+    .btn-login:hover:not(:disabled) { background: #1f5a3a; }
+    .btn-login:disabled { opacity: 0.65; cursor: not-allowed; }
+    .login-error { background: var(--lightred); color: var(--red); border-radius: 8px; padding: 10px 14px; font-size: 0.84rem; margin-top: 14px; display: none; text-align: left; }
     .login-error.show { display: block; }
+    .firebase-mode-pill { display: inline-block; font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; margin-bottom: 20px; }
+    .firebase-mode-pill.live { background: #EAF5EC; color: #27AE60; }
+    .firebase-mode-pill.local { background: #FFF8E7; color: #E67E22; }
 
-    /* ───── DASHBOARD ───── */
+    /* ── TOPBAR ── */
     #dashboard { display: none; }
-
-    .topbar {
-      background: var(--green);
-      color: white;
-      padding: 0 32px;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
-    }
-
-    .topbar-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .topbar-logo {
-      font-size: 1.5rem;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .topbar-badge {
-      background: var(--gold);
-      color: var(--green);
-      font-size: 0.72rem;
-      font-weight: 800;
-      padding: 2px 10px;
-      border-radius: 20px;
-      letter-spacing: 0.5px;
-    }
-
-    .topbar-right {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .admin-email-pill {
-      font-size: 0.84rem;
-      opacity: 0.85;
-    }
-
-    .btn-logout {
-      background: rgba(255,255,255,0.15);
-      color: white;
-      border: 1px solid rgba(255,255,255,0.3);
-      padding: 7px 18px;
-      border-radius: 8px;
-      font-size: 0.84rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
+    .topbar { background: var(--green); color: white; padding: 0 32px; height: 64px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,0.15); }
+    .topbar-logo { font-size: 1.3rem; font-weight: 800; display: flex; align-items: center; gap: 8px; }
+    .topbar-badge { background: var(--gold); color: var(--green); font-size: 0.72rem; font-weight: 800; padding: 2px 10px; border-radius: 20px; }
+    .mode-pill { font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
+    .mode-pill.firebase { background: rgba(39,174,96,0.25); color: #80FFB0; border: 1px solid rgba(39,174,96,0.4); }
+    .mode-pill.local { background: rgba(230,126,34,0.25); color: #FFD0A0; border: 1px solid rgba(230,126,34,0.4); }
+    .topbar-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .admin-email-pill { font-size: 0.82rem; opacity: 0.8; }
+    .btn-logout { background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 7px 18px; border-radius: 8px; font-size: 0.84rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
     .btn-logout:hover { background: rgba(255,255,255,0.25); }
 
-    .dash-wrap {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 32px 24px;
-    }
+    /* ── DASHBOARD BODY ── */
+    .dash-wrap { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+    .notice-bar { border-radius: 12px; padding: 14px 20px; margin-bottom: 24px; font-size: 0.88rem; line-height: 1.6; }
+    .notice-bar.local { background: #FFF8E7; border: 1.5px solid var(--gold); color: #7A4E00; }
+    .notice-bar.firebase { background: var(--lightgreen); border: 1.5px solid #A5D6A7; color: #1B5E20; }
 
-    /* Stats Row */
-    .stats-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 16px;
-      margin-bottom: 32px;
-    }
-
-    .stat-card {
-      background: white;
-      border-radius: 14px;
-      padding: 22px 24px;
-      box-shadow: var(--shadow);
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .stat-icon {
-      font-size: 2rem;
-      width: 54px;
-      height: 54px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
+    /* Stats */
+    .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 16px; margin-bottom: 28px; }
+    .stat-card { background: white; border-radius: 14px; padding: 20px 22px; box-shadow: var(--shadow); display: flex; align-items: center; gap: 14px; }
+    .stat-icon { font-size: 1.8rem; width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
     .stat-icon.pending { background: #FFF8E7; }
     .stat-icon.approved { background: var(--lightgreen); }
     .stat-icon.rejected { background: var(--lightred); }
     .stat-icon.total { background: #EEF2FF; }
-
-    .stat-info span {
-      display: block;
-      font-size: 0.78rem;
-      color: var(--muted);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .stat-info strong {
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--green);
-    }
+    .stat-info span { display: block; font-size: 0.75rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .stat-info strong { font-size: 1.9rem; font-weight: 800; color: var(--green); }
 
     /* Tabs */
-    .tabs-bar {
-      display: flex;
-      gap: 4px;
-      background: white;
-      border-radius: 12px;
-      padding: 6px;
-      box-shadow: var(--shadow);
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-    }
-
-    .tab-btn {
-      flex: 1;
-      min-width: 120px;
-      padding: 10px 18px;
-      border: none;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      background: transparent;
-      color: var(--muted);
-      transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-    }
-
-    .tab-btn .count-badge {
-      background: #E9EDF0;
-      color: var(--muted);
-      font-size: 0.75rem;
-      padding: 1px 8px;
-      border-radius: 20px;
-      font-weight: 700;
-    }
-
-    .tab-btn.active {
-      background: var(--green);
-      color: white;
-    }
-
-    .tab-btn.active .count-badge {
-      background: rgba(255,255,255,0.25);
-      color: white;
-    }
-
-    .tab-btn.pending-tab.active { background: #E67E22; }
-    .tab-btn.rejected-tab.active { background: var(--red); }
+    .tabs-bar { display: flex; gap: 4px; background: white; border-radius: 12px; padding: 6px; box-shadow: var(--shadow); margin-bottom: 24px; flex-wrap: wrap; }
+    .tab-btn { flex: 1; min-width: 110px; padding: 10px 16px; border: none; border-radius: 8px; font-size: 0.88rem; font-weight: 600; cursor: pointer; background: transparent; color: var(--muted); transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 6px; }
+    .tab-btn .cnt { background: #E9EDF0; color: var(--muted); font-size: 0.72rem; padding: 1px 7px; border-radius: 20px; font-weight: 700; }
+    .tab-btn.active { background: var(--green); color: white; }
+    .tab-btn.active .cnt { background: rgba(255,255,255,0.25); color: white; }
+    .tab-btn.pt.active { background: #E67E22; }
+    .tab-btn.rt.active { background: var(--red); }
 
     /* Recipe Cards */
     .recipes-list { display: flex; flex-direction: column; gap: 16px; }
-
-    .recipe-admin-card {
-      background: white;
-      border-radius: 14px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      border-left: 4px solid var(--border);
-      transition: box-shadow 0.2s;
-    }
-
+    .recipe-admin-card { background: white; border-radius: 14px; box-shadow: var(--shadow); overflow: hidden; display: grid; grid-template-columns: 160px 1fr; border-left: 4px solid var(--border); transition: box-shadow 0.2s; }
     .recipe-admin-card:hover { box-shadow: 0 8px 32px rgba(22,62,40,0.14); }
     .recipe-admin-card.pending { border-left-color: #E67E22; }
     .recipe-admin-card.approved { border-left-color: #27AE60; }
     .recipe-admin-card.rejected { border-left-color: var(--red); }
-
-    .recipe-admin-img {
-      width: 160px;
-      height: 150px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .recipe-admin-img-placeholder {
-      width: 160px;
-      height: 150px;
-      background: linear-gradient(135deg, #E8F5E9, #FFF9E0);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-    }
-
-    .recipe-admin-body {
-      padding: 16px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .recipe-admin-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .recipe-admin-title {
-      font-size: 1.08rem;
-      font-weight: 800;
-      color: var(--green);
-    }
-
-    .status-pill {
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 3px 12px;
-      border-radius: 20px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      white-space: nowrap;
-    }
-
+    .recipe-thumb { width: 160px; height: 150px; object-fit: cover; display: block; }
+    .recipe-thumb-ph { width: 160px; height: 150px; background: linear-gradient(135deg, #E8F5E9, #FFF9E0); display: flex; align-items: center; justify-content: center; font-size: 2.8rem; }
+    .recipe-body { padding: 16px 20px; display: flex; flex-direction: column; gap: 6px; }
+    .recipe-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+    .recipe-name { font-size: 1.05rem; font-weight: 800; color: var(--green); }
+    .status-pill { font-size: 0.7rem; font-weight: 700; padding: 3px 11px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
     .status-pill.pending { background: #FFF3E0; color: #E67E22; }
     .status-pill.approved { background: var(--lightgreen); color: #27AE60; }
     .status-pill.rejected { background: var(--lightred); color: var(--red); }
-
-    .recipe-admin-meta {
-      font-size: 0.82rem;
-      color: var(--muted);
-    }
-
-    .recipe-admin-meta strong { color: var(--text); }
-
-    .recipe-admin-desc {
-      font-size: 0.85rem;
-      color: #555;
-      line-height: 1.5;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-
-    .recipe-admin-actions {
-      display: flex;
-      gap: 8px;
-      margin-top: 8px;
-      flex-wrap: wrap;
-    }
-
-    .btn-approve {
-      background: #27AE60;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      padding: 8px 18px;
-      font-size: 0.84rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
+    .recipe-meta { font-size: 0.8rem; color: var(--muted); }
+    .recipe-meta strong { color: var(--text); }
+    .recipe-desc { font-size: 0.84rem; color: #555; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .recipe-actions { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+    .btn-approve { background: #27AE60; color: white; border: none; border-radius: 8px; padding: 7px 16px; font-size: 0.82rem; font-weight: 700; cursor: pointer; transition: background 0.2s; }
     .btn-approve:hover { background: #219150; }
-
-    .btn-reject {
-      background: var(--lightred);
-      color: var(--red);
-      border: 1px solid #FADBD8;
-      border-radius: 8px;
-      padding: 8px 18px;
-      font-size: 0.84rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
+    .btn-reject { background: var(--lightred); color: var(--red); border: 1px solid #FADBD8; border-radius: 8px; padding: 7px 16px; font-size: 0.82rem; font-weight: 700; cursor: pointer; transition: background 0.2s; }
     .btn-reject:hover { background: #FADBD8; }
-
-    .btn-delete {
-      background: #2C3E50;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      padding: 8px 18px;
-      font-size: 0.84rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
+    .btn-delete { background: #2C3E50; color: white; border: none; border-radius: 8px; padding: 7px 16px; font-size: 0.82rem; font-weight: 700; cursor: pointer; transition: background 0.2s; }
     .btn-delete:hover { background: #1a252f; }
-
-    .btn-view {
-      background: #EEF2FF;
-      color: #3949AB;
-      border: none;
-      border-radius: 8px;
-      padding: 8px 18px;
-      font-size: 0.84rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
+    .btn-view { background: #EEF2FF; color: #3949AB; border: none; border-radius: 8px; padding: 7px 16px; font-size: 0.82rem; font-weight: 700; cursor: pointer; transition: background 0.2s; }
     .btn-view:hover { background: #DCE0FF; }
 
-    /* Empty State */
-    .empty-state {
-      background: white;
-      border-radius: 14px;
-      padding: 60px 24px;
-      text-align: center;
-      box-shadow: var(--shadow);
-    }
-
-    .empty-state .icon { font-size: 3rem; margin-bottom: 12px; }
+    /* Loading / Empty */
+    .loading-state { text-align: center; padding: 60px 24px; color: var(--muted); font-size: 0.95rem; }
+    .spinner { width: 36px; height: 36px; border: 3px solid var(--border); border-top-color: var(--green); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 14px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .empty-state { background: white; border-radius: 14px; padding: 60px 24px; text-align: center; box-shadow: var(--shadow); }
+    .empty-state .ei { font-size: 3rem; margin-bottom: 12px; }
     .empty-state h3 { color: var(--green); font-size: 1.1rem; margin-bottom: 6px; }
     .empty-state p { color: var(--muted); font-size: 0.88rem; }
 
-    /* Loading Spinner */
-    .loading-state {
-      text-align: center;
-      padding: 60px 24px;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .spinner {
-      width: 36px;
-      height: 36px;
-      border: 3px solid var(--border);
-      border-top-color: var(--green);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-      margin: 0 auto 14px;
-    }
-
-    @keyframes spin { to { transform: rotate(360deg); } }
-
     /* Detail Modal */
-    .detail-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.6);
-      z-index: 999;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
+    .detail-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 999; align-items: center; justify-content: center; padding: 20px; }
     .detail-overlay.open { display: flex; }
-
-    .detail-card {
-      background: white;
-      border-radius: 18px;
-      max-width: 680px;
-      width: 100%;
-      max-height: 90vh;
-      overflow-y: auto;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    }
-
-    .detail-header {
-      background: var(--green);
-      color: white;
-      padding: 20px 24px;
-      border-radius: 18px 18px 0 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .detail-header h3 { font-size: 1.2rem; font-weight: 800; }
-
-    .detail-close {
-      background: rgba(255,255,255,0.2);
-      border: none;
-      color: white;
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      font-size: 1.1rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .detail-body { padding: 24px; }
-
-    .detail-row { margin-bottom: 16px; }
-    .detail-label {
-      font-size: 0.78rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      color: var(--muted);
-      letter-spacing: 0.5px;
-      margin-bottom: 4px;
-    }
-    .detail-value { font-size: 0.95rem; color: var(--text); line-height: 1.6; }
+    .detail-card { background: white; border-radius: 18px; max-width: 680px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+    .detail-header { background: var(--green); color: white; padding: 18px 24px; border-radius: 18px 18px 0 0; display: flex; align-items: center; justify-content: space-between; }
+    .detail-header h3 { font-size: 1.1rem; font-weight: 800; }
+    .detail-close { background: rgba(255,255,255,0.2); border: none; color: white; width: 30px; height: 30px; border-radius: 7px; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .detail-body { padding: 22px 24px; }
+    .detail-row { margin-bottom: 14px; }
+    .detail-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: 0.5px; margin-bottom: 3px; }
+    .detail-value { font-size: 0.93rem; color: var(--text); line-height: 1.6; }
 
     /* Toast */
-    #toast {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      background: var(--green);
-      color: white;
-      padding: 14px 24px;
-      border-radius: 12px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-      z-index: 9999;
-      transform: translateY(80px);
-      opacity: 0;
-      transition: all 0.3s;
-    }
-
-    #toast.show {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
+    #toast { position: fixed; bottom: 24px; right: 24px; background: var(--green); color: white; padding: 13px 22px; border-radius: 12px; font-size: 0.88rem; font-weight: 600; box-shadow: 0 8px 24px rgba(0,0,0,0.2); z-index: 9999; transform: translateY(80px); opacity: 0; transition: all 0.3s; }
+    #toast.show { transform: translateY(0); opacity: 1; }
     #toast.error { background: var(--red); }
     #toast.success { background: #27AE60; }
 
-    /* Firebase setup notice */
-    .setup-notice {
-      background: #FFF8E7;
-      border: 2px solid var(--gold);
-      border-radius: 14px;
-      padding: 20px 24px;
-      margin-bottom: 24px;
-      display: none;
-    }
-
-    .setup-notice h4 { color: var(--green); font-size: 1rem; margin-bottom: 8px; }
-    .setup-notice p { font-size: 0.85rem; color: #555; line-height: 1.6; }
-    .setup-notice code {
-      background: #F4F6F8;
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-size: 0.82rem;
-    }
-
     @media (max-width: 600px) {
       .recipe-admin-card { grid-template-columns: 1fr; }
-      .recipe-admin-img { width: 100%; height: 160px; }
-      .recipe-admin-img-placeholder { width: 100%; }
-      .topbar { padding: 0 16px; }
-      .dash-wrap { padding: 20px 14px; }
-      .login-card { padding: 32px 24px; }
+      .recipe-thumb { width: 100%; height: 160px; }
+      .recipe-thumb-ph { width: 100%; }
+      .topbar { padding: 0 14px; }
+      .dash-wrap { padding: 18px 12px; }
+      .login-card { padding: 30px 20px; }
+      .topbar-logo { font-size: 1.1rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- ══════════════════ LOGIN SCREEN ══════════════════ -->
+<!-- ══════ LOGIN ══════ -->
 <div id="loginScreen">
   <div class="login-card">
     <div class="login-logo">
-      <span class="corn-emoji">🌽</span>
+      <span class="corn">🌽</span>
       <span class="brand">CornGrits.in</span>
     </div>
     <h2>Admin Dashboard</h2>
-    <p class="sub">Sign in with your admin credentials to manage recipe submissions.</p>
-
-    <form id="loginForm" autocomplete="off">
+    <p class="sub">Sign in to manage recipe submissions — approve, reject, or delete.</p>
+    <div class="firebase-mode-pill local" id="loginModePill">⚡ Local Mode</div>
+    <form id="loginForm">
       <div class="form-group">
-        <label for="adminEmail">Admin Email</label>
-        <input type="email" id="adminEmail" placeholder="admin@corngrits.in" required autocomplete="username">
+        <label for="adminEmail">Email</label>
+        <input type="email" id="adminEmail" placeholder="admin@corngrits.in" required>
       </div>
       <div class="form-group">
         <label for="adminPassword">Password</label>
-        <input type="password" id="adminPassword" placeholder="Enter password" required autocomplete="current-password">
+        <input type="password" id="adminPassword" placeholder="Enter password" required>
       </div>
       <button type="submit" class="btn-login" id="loginBtn">Sign In →</button>
       <div class="login-error" id="loginError"></div>
@@ -638,71 +178,44 @@
   </div>
 </div>
 
-<!-- ══════════════════ DASHBOARD ══════════════════ -->
+<!-- ══════ DASHBOARD ══════ -->
 <div id="dashboard">
   <nav class="topbar">
-    <div class="topbar-left">
-      <div class="topbar-logo">🌽 CornGrits.in <span class="topbar-badge">ADMIN</span></div>
-    </div>
+    <div class="topbar-logo">🌽 CornGrits.in <span class="topbar-badge">ADMIN</span></div>
     <div class="topbar-right">
+      <span class="mode-pill local" id="topModePill">⚡ Local</span>
       <span class="admin-email-pill" id="adminEmailDisplay"></span>
       <button class="btn-logout" id="logoutBtn">Logout</button>
     </div>
   </nav>
 
   <div class="dash-wrap">
-
-    <!-- Firebase Setup Notice (shown if not configured) -->
-    <div class="setup-notice" id="setupNotice">
-      <h4>⚙️ Firebase Not Configured</h4>
-      <p>To enable real-time recipe management across all devices, add your Firebase config in <code>js/firebase-config.js</code>. Currently running in <strong>Local Mode</strong> (data stored in this browser only).</p>
+    <div class="notice-bar local" id="noticeBar">
+      ⚡ <strong>Local Mode:</strong> Recipe data is stored only in this browser. To manage recipes from any device, complete the Firebase setup in <code>js/firebase-config.js</code>.
     </div>
 
     <!-- Stats -->
     <div class="stats-row">
-      <div class="stat-card">
-        <div class="stat-icon total">📋</div>
-        <div class="stat-info"><span>Total</span><strong id="statTotal">0</strong></div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon pending">⏳</div>
-        <div class="stat-info"><span>Pending</span><strong id="statPending">0</strong></div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon approved">✅</div>
-        <div class="stat-info"><span>Approved</span><strong id="statApproved">0</strong></div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon rejected">❌</div>
-        <div class="stat-info"><span>Rejected</span><strong id="statRejected">0</strong></div>
-      </div>
+      <div class="stat-card"><div class="stat-icon total">📋</div><div class="stat-info"><span>Total</span><strong id="statTotal">0</strong></div></div>
+      <div class="stat-card"><div class="stat-icon pending">⏳</div><div class="stat-info"><span>Pending</span><strong id="statPending">0</strong></div></div>
+      <div class="stat-card"><div class="stat-icon approved">✅</div><div class="stat-info"><span>Approved</span><strong id="statApproved">0</strong></div></div>
+      <div class="stat-card"><div class="stat-icon rejected">❌</div><div class="stat-info"><span>Rejected</span><strong id="statRejected">0</strong></div></div>
     </div>
 
     <!-- Tabs -->
     <div class="tabs-bar">
-      <button class="tab-btn pending-tab active" data-tab="pending">
-        ⏳ Pending <span class="count-badge" id="tabCountPending">0</span>
-      </button>
-      <button class="tab-btn active-tab" data-tab="approved">
-        ✅ Approved <span class="count-badge" id="tabCountApproved">0</span>
-      </button>
-      <button class="tab-btn rejected-tab" data-tab="rejected">
-        ❌ Rejected <span class="count-badge" id="tabCountRejected">0</span>
-      </button>
+      <button class="tab-btn pt active" data-tab="pending">⏳ Pending <span class="cnt" id="cntPending">0</span></button>
+      <button class="tab-btn at" data-tab="approved">✅ Approved <span class="cnt" id="cntApproved">0</span></button>
+      <button class="tab-btn rt" data-tab="rejected">❌ Rejected <span class="cnt" id="cntRejected">0</span></button>
     </div>
 
-    <!-- Recipe List -->
     <div class="recipes-list" id="recipesList">
-      <div class="loading-state">
-        <div class="spinner"></div>
-        Loading recipes...
-      </div>
+      <div class="loading-state"><div class="spinner"></div>Loading...</div>
     </div>
-
   </div>
 </div>
 
-<!-- ══════════════════ DETAIL MODAL ══════════════════ -->
+<!-- ══════ DETAIL MODAL ══════ -->
 <div class="detail-overlay" id="detailOverlay">
   <div class="detail-card">
     <div class="detail-header">
@@ -713,309 +226,391 @@
   </div>
 </div>
 
-<!-- Toast -->
 <div id="toast"></div>
 
-<!-- ══════════════════ SCRIPT ══════════════════ -->
+<!-- ══════ Firebase Config ══════ -->
+<script src="js/firebase-config.js"></script>
+
 <script>
-  // ═══════════════════════════════════════════════════
-  //  ADMIN CONFIG — Change these credentials
-  //  (For production, use Firebase Auth instead)
-  // ═══════════════════════════════════════════════════
-  const ADMIN_EMAIL    = 'admin@corngrits.in';
-  const ADMIN_PASSWORD = 'CornGrits@2025';
+// ═══════════════════════════════════════════════════════
+//  ADMIN AUTH CONFIG (Local Mode fallback)
+// ═══════════════════════════════════════════════════════
+const LOCAL_ADMIN_EMAIL    = 'admin@corngrits.in';
+const LOCAL_ADMIN_PASSWORD = 'CornGrits@2025';
+const STORAGE_KEY          = 'corngrits_community_recipes';
+const SESSION_KEY          = 'cg_admin_session';
 
-  // localStorage key (same as main website)
-  const STORAGE_KEY = 'corngrits_community_recipes';
-  const SESSION_KEY = 'cg_admin_session';
+// ── Firebase or Local? ──────────────────────────────────
+let useFirebase = false;
+let db = null;
+let firebaseAuth = null;
 
-  // ── State ──
-  let currentTab = 'pending';
-  let allRecipes = [];
-
-  // ══════════════════════════════════
-  //  AUTH
-  // ══════════════════════════════════
-  const loginScreen  = document.getElementById('loginScreen');
-  const dashboard    = document.getElementById('dashboard');
-  const loginForm    = document.getElementById('loginForm');
-  const loginError   = document.getElementById('loginError');
-  const loginBtn     = document.getElementById('loginBtn');
-  const logoutBtn    = document.getElementById('logoutBtn');
-  const adminEmailEl = document.getElementById('adminEmailDisplay');
-
-  function checkSession() {
-    const session = sessionStorage.getItem(SESSION_KEY);
-    if (session === 'authenticated') {
-      showDashboard();
-    }
+if (typeof CG_FIREBASE_READY !== 'undefined' && CG_FIREBASE_READY) {
+  try {
+    firebase.initializeApp(FIREBASE_CONFIG);
+    db = firebase.firestore();
+    firebaseAuth = firebase.auth();
+    useFirebase = true;
+  } catch(e) {
+    console.warn('Firebase init failed, falling back to local:', e);
+    useFirebase = false;
   }
+}
 
-  loginForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const email    = document.getElementById('adminEmail').value.trim();
-    const password = document.getElementById('adminPassword').value;
+// Update UI mode indicators
+function setModeUI() {
+  const loginPill = document.getElementById('loginModePill');
+  const topPill   = document.getElementById('topModePill');
+  const notice    = document.getElementById('noticeBar');
+  if (useFirebase) {
+    loginPill.textContent = '🔥 Firebase Live Mode';
+    loginPill.className   = 'firebase-mode-pill live';
+    topPill.textContent   = '🔥 Firebase';
+    topPill.className     = 'mode-pill firebase';
+    notice.className      = 'notice-bar firebase';
+    notice.innerHTML      = '🔥 <strong>Firebase Mode:</strong> You are connected to Firebase. Recipes submitted from any device will appear here in real time.';
+  }
+}
+setModeUI();
 
-    loginBtn.textContent = 'Signing in...';
-    loginBtn.disabled = true;
+// ═══════════════════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════════════════
+let currentTab  = 'pending';
+let allRecipes  = [];
+let unsubscribe = null; // Firestore real-time listener cleanup
 
-    // Simulate network delay for UX
+// ═══════════════════════════════════════════════════════
+//  DOM REFS
+// ═══════════════════════════════════════════════════════
+const loginScreen = document.getElementById('loginScreen');
+const dashboard   = document.getElementById('dashboard');
+const loginForm   = document.getElementById('loginForm');
+const loginError  = document.getElementById('loginError');
+const loginBtn    = document.getElementById('loginBtn');
+const logoutBtn   = document.getElementById('logoutBtn');
+const emailDisplay= document.getElementById('adminEmailDisplay');
+
+// ═══════════════════════════════════════════════════════
+//  AUTH
+// ═══════════════════════════════════════════════════════
+loginForm.addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const email    = document.getElementById('adminEmail').value.trim();
+  const password = document.getElementById('adminPassword').value;
+  loginBtn.textContent = 'Signing in...';
+  loginBtn.disabled    = true;
+  loginError.classList.remove('show');
+
+  if (useFirebase) {
+    try {
+      await firebaseAuth.signInWithEmailAndPassword(email, password);
+      // onAuthStateChanged will show dashboard
+    } catch(err) {
+      let msg = '❌ Login failed. Please try again.';
+      if (err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') {
+        msg = '❌ Invalid email or password.';
+      } else if (err.code === 'auth/too-many-requests') {
+        msg = '❌ Too many failed attempts. Please wait and try again.';
+      }
+      loginError.textContent = msg;
+      loginError.classList.add('show');
+      loginBtn.textContent = 'Sign In →';
+      loginBtn.disabled    = false;
+    }
+  } else {
+    // Local mode — simple credential check
     setTimeout(() => {
-      if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+      if (email === LOCAL_ADMIN_EMAIL && password === LOCAL_ADMIN_PASSWORD) {
         sessionStorage.setItem(SESSION_KEY, 'authenticated');
-        showDashboard();
+        showDashboard(email);
       } else {
-        loginError.textContent = '❌ Invalid email or password. Please try again.';
+        loginError.textContent = '❌ Invalid email or password.';
         loginError.classList.add('show');
         loginBtn.textContent = 'Sign In →';
-        loginBtn.disabled = false;
+        loginBtn.disabled    = false;
       }
-    }, 600);
-  });
-
-  logoutBtn.addEventListener('click', function() {
-    sessionStorage.removeItem(SESSION_KEY);
-    loginScreen.style.display = 'flex';
-    dashboard.style.display = 'none';
-    document.getElementById('adminEmail').value = '';
-    document.getElementById('adminPassword').value = '';
-    loginBtn.textContent = 'Sign In →';
-    loginBtn.disabled = false;
-  });
-
-  function showDashboard() {
-    loginScreen.style.display = 'none';
-    dashboard.style.display = 'block';
-    adminEmailEl.textContent = ADMIN_EMAIL;
-    loadRecipes();
+    }, 500);
   }
+});
 
-  // ══════════════════════════════════
-  //  DATA
-  // ══════════════════════════════════
-  function loadRecipes() {
+logoutBtn.addEventListener('click', async function() {
+  if (useFirebase) {
+    if (unsubscribe) { unsubscribe(); unsubscribe = null; }
+    await firebaseAuth.signOut();
+  } else {
+    sessionStorage.removeItem(SESSION_KEY);
+    hideDashboard();
+  }
+});
+
+// Firebase auth state watcher
+if (useFirebase) {
+  firebaseAuth.onAuthStateChanged(function(user) {
+    if (user) {
+      showDashboard(user.email);
+    } else {
+      hideDashboard();
+    }
+  });
+} else {
+  // Local session check
+  if (sessionStorage.getItem(SESSION_KEY) === 'authenticated') {
+    showDashboard(LOCAL_ADMIN_EMAIL);
+  }
+}
+
+function showDashboard(email) {
+  loginScreen.style.display = 'none';
+  dashboard.style.display   = 'block';
+  emailDisplay.textContent  = email || '';
+  loginBtn.textContent = 'Sign In →';
+  loginBtn.disabled    = false;
+  loadRecipes();
+}
+
+function hideDashboard() {
+  dashboard.style.display   = 'none';
+  loginScreen.style.display = 'flex';
+  loginBtn.textContent = 'Sign In →';
+  loginBtn.disabled    = false;
+  document.getElementById('adminEmail').value    = '';
+  document.getElementById('adminPassword').value = '';
+  allRecipes = [];
+}
+
+// ═══════════════════════════════════════════════════════
+//  DATA — Firebase or Local
+// ═══════════════════════════════════════════════════════
+function loadRecipes() {
+  if (useFirebase) {
+    // Real-time listener
+    if (unsubscribe) unsubscribe();
+    document.getElementById('recipesList').innerHTML = '<div class="loading-state"><div class="spinner"></div>Loading from Firebase...</div>';
+    unsubscribe = db.collection('recipes')
+      .orderBy('submittedAt', 'desc')
+      .onSnapshot(function(snapshot) {
+        allRecipes = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        renderAll();
+      }, function(err) {
+        console.error('Firestore error:', err);
+        toast('⚠️ Error loading recipes: ' + err.message, 'error');
+      });
+  } else {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       allRecipes = raw ? JSON.parse(raw) : [];
-    } catch(e) {
-      allRecipes = [];
-    }
+    } catch(e) { allRecipes = []; }
     renderAll();
   }
+}
 
-  function saveRecipes() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(allRecipes));
-  }
-
-  function approveRecipe(id) {
+async function approveRecipe(id) {
+  if (useFirebase) {
+    try {
+      await db.collection('recipes').doc(id).update({
+        status: 'approved',
+        approvedAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      toast('✅ Recipe approved and published live!', 'success');
+    } catch(e) { toast('Error: ' + e.message, 'error'); }
+  } else {
     const idx = allRecipes.findIndex(r => r.id === id);
-    if (idx === -1) return;
-    allRecipes[idx].status = 'approved';
+    if (idx < 0) return;
+    allRecipes[idx].status     = 'approved';
     allRecipes[idx].approvedAt = new Date().toISOString();
-    saveRecipes();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(allRecipes));
     renderAll();
     toast('✅ Recipe approved and published live!', 'success');
   }
+}
 
-  function rejectRecipe(id) {
+async function rejectRecipe(id) {
+  if (useFirebase) {
+    try {
+      await db.collection('recipes').doc(id).update({
+        status: 'rejected',
+        rejectedAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      toast('Recipe rejected.', 'error');
+    } catch(e) { toast('Error: ' + e.message, 'error'); }
+  } else {
     const idx = allRecipes.findIndex(r => r.id === id);
-    if (idx === -1) return;
-    allRecipes[idx].status = 'rejected';
+    if (idx < 0) return;
+    allRecipes[idx].status     = 'rejected';
     allRecipes[idx].rejectedAt = new Date().toISOString();
-    saveRecipes();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(allRecipes));
     renderAll();
     toast('Recipe rejected.', 'error');
   }
+}
 
-  function deleteRecipe(id) {
-    if (!confirm('Permanently delete this recipe? This cannot be undone.')) return;
+async function deleteRecipe(id) {
+  if (!confirm('Permanently delete this recipe? This cannot be undone.')) return;
+  if (useFirebase) {
+    try {
+      await db.collection('recipes').doc(id).delete();
+      toast('🗑️ Recipe deleted permanently.', 'success');
+    } catch(e) { toast('Error: ' + e.message, 'error'); }
+  } else {
     allRecipes = allRecipes.filter(r => r.id !== id);
-    saveRecipes();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(allRecipes));
     renderAll();
     toast('🗑️ Recipe deleted permanently.', 'success');
   }
+}
 
-  // ══════════════════════════════════
-  //  RENDER
-  // ══════════════════════════════════
-  function renderAll() {
-    updateStats();
-    renderTab(currentTab);
+// ═══════════════════════════════════════════════════════
+//  RENDER
+// ═══════════════════════════════════════════════════════
+function renderAll() {
+  const pending  = allRecipes.filter(r => r.status === 'pending').length;
+  const approved = allRecipes.filter(r => r.status === 'approved').length;
+  const rejected = allRecipes.filter(r => r.status === 'rejected').length;
+  document.getElementById('statTotal').textContent    = allRecipes.length;
+  document.getElementById('statPending').textContent  = pending;
+  document.getElementById('statApproved').textContent = approved;
+  document.getElementById('statRejected').textContent = rejected;
+  document.getElementById('cntPending').textContent   = pending;
+  document.getElementById('cntApproved').textContent  = approved;
+  document.getElementById('cntRejected').textContent  = rejected;
+  renderTab(currentTab);
+}
+
+function renderTab(tab) {
+  const list     = document.getElementById('recipesList');
+  const filtered = allRecipes.filter(r => r.status === tab);
+
+  if (filtered.length === 0) {
+    const labels = { pending:'No pending recipes', approved:'No approved recipes', rejected:'No rejected recipes' };
+    const subs   = { pending:'New submissions will appear here.', approved:'Approve recipes from the Pending tab.', rejected:'Rejected recipes appear here.' };
+    list.innerHTML = `<div class="empty-state"><div class="ei">${tab==='pending'?'📭':tab==='approved'?'✅':'🗑️'}</div><h3>${labels[tab]}</h3><p>${subs[tab]}</p></div>`;
+    return;
   }
 
-  function updateStats() {
-    const pending  = allRecipes.filter(r => r.status === 'pending').length;
-    const approved = allRecipes.filter(r => r.status === 'approved').length;
-    const rejected = allRecipes.filter(r => r.status === 'rejected').length;
-    const total    = allRecipes.length;
-
-    document.getElementById('statTotal').textContent    = total;
-    document.getElementById('statPending').textContent  = pending;
-    document.getElementById('statApproved').textContent = approved;
-    document.getElementById('statRejected').textContent = rejected;
-
-    document.getElementById('tabCountPending').textContent  = pending;
-    document.getElementById('tabCountApproved').textContent = approved;
-    document.getElementById('tabCountRejected').textContent = rejected;
-  }
-
-  function renderTab(tab) {
-    const list = document.getElementById('recipesList');
-    const filtered = allRecipes.filter(r => r.status === tab);
-
-    if (filtered.length === 0) {
-      const labels = { pending: 'No pending recipes', approved: 'No approved recipes', rejected: 'No rejected recipes' };
-      const subs   = { pending: 'New submissions will appear here.', approved: 'Approve recipes from the Pending tab.', rejected: 'Rejected recipes will appear here.' };
-      list.innerHTML = `
-        <div class="empty-state">
-          <div class="icon">${tab === 'pending' ? '📭' : tab === 'approved' ? '✅' : '🗑️'}</div>
-          <h3>${labels[tab]}</h3>
-          <p>${subs[tab]}</p>
-        </div>`;
-      return;
-    }
-
-    list.innerHTML = filtered.map(r => recipeCardHTML(r)).join('');
-
-    // Bind action buttons
-    list.querySelectorAll('[data-action]').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const action = this.dataset.action;
-        const id = this.dataset.id;
-        if (action === 'approve') approveRecipe(id);
-        else if (action === 'reject') rejectRecipe(id);
-        else if (action === 'delete') deleteRecipe(id);
-        else if (action === 'view') viewRecipe(id);
-      });
-    });
-  }
-
-  function recipeCardHTML(r) {
-    const submittedDate = r.submittedAt ? new Date(r.submittedAt).toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' }) : 'Unknown';
-
-    const imgHTML = r.image
-      ? `<img class="recipe-admin-img" src="${escHtml(r.image)}" alt="${escHtml(r.title)}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="recipe-admin-img-placeholder" style="display:none">🍽️</div>`
-      : `<div class="recipe-admin-img-placeholder">🍽️</div>`;
-
-    let actions = '';
-    if (r.status === 'pending') {
-      actions = `
-        <button class="btn-approve" data-action="approve" data-id="${r.id}">✅ Approve & Publish</button>
-        <button class="btn-reject"  data-action="reject"  data-id="${r.id}">❌ Reject</button>
-        <button class="btn-view"    data-action="view"    data-id="${r.id}">👁 View Full</button>`;
-    } else if (r.status === 'approved') {
-      actions = `
-        <button class="btn-reject" data-action="reject" data-id="${r.id}">↩️ Unpublish</button>
-        <button class="btn-delete" data-action="delete" data-id="${r.id}">🗑️ Delete</button>
-        <button class="btn-view"   data-action="view"   data-id="${r.id}">👁 View Full</button>`;
-    } else {
-      actions = `
-        <button class="btn-approve" data-action="approve" data-id="${r.id}">✅ Re-Approve</button>
-        <button class="btn-delete"  data-action="delete"  data-id="${r.id}">🗑️ Delete</button>
-        <button class="btn-view"    data-action="view"    data-id="${r.id}">👁 View Full</button>`;
-    }
-
-    return `
-      <div class="recipe-admin-card ${r.status}">
-        ${imgHTML}
-        <div class="recipe-admin-body">
-          <div class="recipe-admin-top">
-            <div class="recipe-admin-title">${escHtml(r.title)}</div>
-            <span class="status-pill ${r.status}">${r.status.toUpperCase()}</span>
-          </div>
-          <div class="recipe-admin-meta">
-            By <strong>${escHtml(r.author)}</strong> &bull; ${escHtml(r.category || 'General')} &bull; Submitted: ${submittedDate}
-          </div>
-          <div class="recipe-admin-desc">${escHtml(r.description || '')}</div>
-          <div class="recipe-admin-actions">${actions}</div>
-        </div>
-      </div>`;
-  }
-
-  // ══════════════════════════════════
-  //  DETAIL VIEW
-  // ══════════════════════════════════
-  const detailOverlay = document.getElementById('detailOverlay');
-  document.getElementById('detailClose').addEventListener('click', () => detailOverlay.classList.remove('open'));
-  detailOverlay.addEventListener('click', e => { if (e.target === detailOverlay) detailOverlay.classList.remove('open'); });
-
-  function viewRecipe(id) {
-    const r = allRecipes.find(r => r.id === id);
-    if (!r) return;
-
-    document.getElementById('detailTitle').textContent = r.title;
-
-    const submittedDate = r.submittedAt ? new Date(r.submittedAt).toLocaleString('en-IN') : 'Unknown';
-
-    const ingredients = (r.ingredients || '').split('\n').filter(Boolean).map(i => `<li>${escHtml(i.trim())}</li>`).join('');
-    const instructions = (r.instructions || '').split('\n').filter(Boolean).map((s, idx) => `<li>${escHtml(s.trim())}</li>`).join('');
-
-    document.getElementById('detailBody').innerHTML = `
-      ${r.image ? `<img src="${escHtml(r.image)}" style="width:100%;height:200px;object-fit:cover;border-radius:10px;margin-bottom:16px;" alt="">` : ''}
-      <div class="detail-row"><div class="detail-label">Author</div><div class="detail-value">${escHtml(r.author)}</div></div>
-      <div class="detail-row"><div class="detail-label">Category</div><div class="detail-value">${escHtml(r.category || 'General')}</div></div>
-      <div class="detail-row"><div class="detail-label">Corn Grits Grade</div><div class="detail-value">${escHtml(r.gritsGrade || 'Not specified')}</div></div>
-      <div class="detail-row"><div class="detail-label">Submitted At</div><div class="detail-value">${submittedDate}</div></div>
-      <div class="detail-row"><div class="detail-label">Description</div><div class="detail-value">${escHtml(r.description || '')}</div></div>
-      <div class="detail-row"><div class="detail-label">Ingredients</div><div class="detail-value"><ul style="padding-left:18px;line-height:1.9">${ingredients || '<li>Not provided</li>'}</ul></div></div>
-      <div class="detail-row"><div class="detail-label">Instructions</div><div class="detail-value"><ol style="padding-left:18px;line-height:1.9">${instructions || '<li>Not provided</li>'}</ol></div></div>
-      <div style="display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;">
-        ${r.status === 'pending' ? `<button class="btn-approve" data-action="approve" data-id="${r.id}">✅ Approve & Publish</button><button class="btn-reject" data-action="reject" data-id="${r.id}">❌ Reject</button>` : ''}
-        ${r.status === 'approved' ? `<button class="btn-reject" data-action="reject" data-id="${r.id}">↩️ Unpublish</button><button class="btn-delete" data-action="delete" data-id="${r.id}">🗑️ Delete</button>` : ''}
-        ${r.status === 'rejected' ? `<button class="btn-approve" data-action="approve" data-id="${r.id}">✅ Re-Approve</button><button class="btn-delete" data-action="delete" data-id="${r.id}">🗑️ Delete</button>` : ''}
-      </div>`;
-
-    // Bind action buttons inside detail modal
-    document.querySelectorAll('#detailBody [data-action]').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const action = this.dataset.action;
-        const id = this.dataset.id;
-        detailOverlay.classList.remove('open');
-        if (action === 'approve') approveRecipe(id);
-        else if (action === 'reject') rejectRecipe(id);
-        else if (action === 'delete') deleteRecipe(id);
-      });
-    });
-
-    detailOverlay.classList.add('open');
-  }
-
-  // ══════════════════════════════════
-  //  TABS
-  // ══════════════════════════════════
-  document.querySelectorAll('.tab-btn').forEach(btn => {
+  list.innerHTML = filtered.map(r => cardHTML(r)).join('');
+  list.querySelectorAll('[data-action]').forEach(btn => {
     btn.addEventListener('click', function() {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-      currentTab = this.dataset.tab;
-      renderTab(currentTab);
+      const { action, id } = this.dataset;
+      if (action === 'approve') approveRecipe(id);
+      else if (action === 'reject') rejectRecipe(id);
+      else if (action === 'delete') deleteRecipe(id);
+      else if (action === 'view') viewDetail(id);
     });
   });
+}
 
-  // ══════════════════════════════════
-  //  TOAST
-  // ══════════════════════════════════
-  let toastTimer;
-  function toast(msg, type = 'success') {
-    const el = document.getElementById('toast');
-    el.textContent = msg;
-    el.className = 'show ' + type;
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => el.className = '', 3000);
+function cardHTML(r) {
+  let submittedDate = '—';
+  if (r.submittedAt) {
+    const d = r.submittedAt.toDate ? r.submittedAt.toDate() : new Date(r.submittedAt);
+    submittedDate = d.toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' });
   }
 
-  // ══════════════════════════════════
-  //  HELPERS
-  // ══════════════════════════════════
-  function escHtml(str) {
-    if (!str) return '';
-    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  const imgHTML = r.image
+    ? `<img class="recipe-thumb" src="${esc(r.image)}" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="recipe-thumb-ph" style="display:none">🍽️</div>`
+    : `<div class="recipe-thumb-ph">🍽️</div>`;
+
+  let actions = '';
+  if (r.status === 'pending') {
+    actions = `<button class="btn-approve" data-action="approve" data-id="${r.id}">✅ Approve & Publish</button><button class="btn-reject" data-action="reject" data-id="${r.id}">❌ Reject</button><button class="btn-view" data-action="view" data-id="${r.id}">👁 View Full</button>`;
+  } else if (r.status === 'approved') {
+    actions = `<button class="btn-reject" data-action="reject" data-id="${r.id}">↩️ Unpublish</button><button class="btn-delete" data-action="delete" data-id="${r.id}">🗑️ Delete</button><button class="btn-view" data-action="view" data-id="${r.id}">👁 View Full</button>`;
+  } else {
+    actions = `<button class="btn-approve" data-action="approve" data-id="${r.id}">✅ Re-Approve</button><button class="btn-delete" data-action="delete" data-id="${r.id}">🗑️ Delete</button><button class="btn-view" data-action="view" data-id="${r.id}">👁 View Full</button>`;
   }
 
-  // ══════════════════════════════════
-  //  INIT
-  // ══════════════════════════════════
-  checkSession();
+  return `
+    <div class="recipe-admin-card ${r.status}">
+      ${imgHTML}
+      <div class="recipe-body">
+        <div class="recipe-top">
+          <div class="recipe-name">${esc(r.title)}</div>
+          <span class="status-pill ${r.status}">${r.status.toUpperCase()}</span>
+        </div>
+        <div class="recipe-meta">By <strong>${esc(r.author)}</strong> &bull; ${esc(r.category||'General')} &bull; ${submittedDate}</div>
+        <div class="recipe-desc">${esc(r.description||r.ingredients||'')}</div>
+        <div class="recipe-actions">${actions}</div>
+      </div>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════════════
+//  DETAIL VIEW
+// ═══════════════════════════════════════════════════════
+const detailOverlay = document.getElementById('detailOverlay');
+document.getElementById('detailClose').addEventListener('click', () => detailOverlay.classList.remove('open'));
+detailOverlay.addEventListener('click', e => { if(e.target===detailOverlay) detailOverlay.classList.remove('open'); });
+
+function viewDetail(id) {
+  const r = allRecipes.find(r => r.id === id);
+  if (!r) return;
+  document.getElementById('detailTitle').textContent = r.title;
+
+  let submittedStr = '—';
+  if (r.submittedAt) {
+    const d = r.submittedAt.toDate ? r.submittedAt.toDate() : new Date(r.submittedAt);
+    submittedStr = d.toLocaleString('en-IN');
+  }
+
+  const ings  = (r.ingredients||'').split('\n').filter(Boolean).map(i=>`<li>${esc(i.trim())}</li>`).join('');
+  const steps = (r.instructions||'').split('\n').filter(Boolean).map(s=>`<li>${esc(s.trim())}</li>`).join('');
+
+  document.getElementById('detailBody').innerHTML = `
+    ${r.image ? `<img src="${esc(r.image)}" style="width:100%;height:200px;object-fit:cover;border-radius:10px;margin-bottom:16px;">` : ''}
+    <div class="detail-row"><div class="detail-label">Author</div><div class="detail-value">${esc(r.author)}</div></div>
+    <div class="detail-row"><div class="detail-label">Category</div><div class="detail-value">${esc(r.category||'General')}</div></div>
+    <div class="detail-row"><div class="detail-label">Grits Grade</div><div class="detail-value">${esc(r.gritsGrade||r.grade||'Not specified')}</div></div>
+    <div class="detail-row"><div class="detail-label">Submitted</div><div class="detail-value">${submittedStr}</div></div>
+    <div class="detail-row"><div class="detail-label">Description</div><div class="detail-value">${esc(r.description||'')}</div></div>
+    <div class="detail-row"><div class="detail-label">Ingredients</div><div class="detail-value"><ul style="padding-left:18px;line-height:1.9">${ings||'<li>Not provided</li>'}</ul></div></div>
+    <div class="detail-row"><div class="detail-label">Instructions</div><div class="detail-value"><ol style="padding-left:18px;line-height:1.9">${steps||'<li>Not provided</li>'}</ol></div></div>
+    <div style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;">
+      ${r.status==='pending'  ? `<button class="btn-approve" data-action="approve" data-id="${r.id}">✅ Approve</button><button class="btn-reject" data-action="reject" data-id="${r.id}">❌ Reject</button>` : ''}
+      ${r.status==='approved' ? `<button class="btn-reject" data-action="reject" data-id="${r.id}">↩️ Unpublish</button><button class="btn-delete" data-action="delete" data-id="${r.id}">🗑️ Delete</button>` : ''}
+      ${r.status==='rejected' ? `<button class="btn-approve" data-action="approve" data-id="${r.id}">✅ Re-Approve</button><button class="btn-delete" data-action="delete" data-id="${r.id}">🗑️ Delete</button>` : ''}
+    </div>`;
+
+  document.querySelectorAll('#detailBody [data-action]').forEach(btn => {
+    btn.addEventListener('click', function() {
+      detailOverlay.classList.remove('open');
+      const { action, id } = this.dataset;
+      if (action === 'approve') approveRecipe(id);
+      else if (action === 'reject') rejectRecipe(id);
+      else if (action === 'delete') deleteRecipe(id);
+    });
+  });
+  detailOverlay.classList.add('open');
+}
+
+// ═══════════════════════════════════════════════════════
+//  TABS
+// ═══════════════════════════════════════════════════════
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    currentTab = this.dataset.tab;
+    renderTab(currentTab);
+  });
+});
+
+// ═══════════════════════════════════════════════════════
+//  TOAST
+// ═══════════════════════════════════════════════════════
+let toastTimer;
+function toast(msg, type='success') {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'show ' + type;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.className = '', 3200);
+}
+
+function esc(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
 </script>
 </body>
 </html>

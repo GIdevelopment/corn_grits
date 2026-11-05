@@ -1119,6 +1119,17 @@
     </div>
   </div>
 
+  <!-- Firebase SDK (compat) — for recipe submission & live approved recipes -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <!-- Initialize Firebase if config is ready -->
+  <script>
+    if (typeof CG_FIREBASE_READY !== 'undefined' && CG_FIREBASE_READY) {
+      try { firebase.initializeApp(FIREBASE_CONFIG); } catch(e) {}
+    }
+  </script>
   <script src="js/main.js"></script>
 </body>
 </html>

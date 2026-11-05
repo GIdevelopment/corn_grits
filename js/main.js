@@ -683,6 +683,30 @@ function initGradeTabs() {
 function initRecipeCommunity() {
   const STORAGE_KEY = 'corngrits_community_recipes';
 
+  // ── Firebase check ──────────────────────────────────
+  const firebaseAvailable = (
+    typeof CG_FIREBASE_READY !== 'undefined' &&
+    CG_FIREBASE_READY &&
+    typeof firebase !== 'undefined'
+  );
+
+  // If Firebase is available, seed Firestore with defaults if empty,
+  // then render community grid from Firestore (approved only).
+  if (firebaseAvailable) {
+    const firestoreDB = firebase.firestore();
+    // Real-time listener for approved recipes on the page grid
+    const grid = document.querySelector('#communityRecipesGrid');
+    if (grid) {
+      firestoreDB.collection('recipes')
+        .where('status', '==', 'approved')
+        .orderBy('approvedAt', 'desc')
+        .onSnapshot(snapshot => {
+          const approved = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+          renderApprovedGrid(approved, grid);
+        }, err => console.warn('Firestore grid error:', err));
+    }
+  }
+
   const DEFAULT_RECIPES = [
     {
       id: 'rec_101',
@@ -741,6 +765,64 @@ function initRecipeCommunity() {
     } catch (e) {
       console.error('Failed to save recipes to localStorage', e);
     }
+  }
+
+  // ── Shared grid renderer (used by both Firebase and local path) ──
+  function renderApprovedGrid(recipes, grid) {
+    if (!grid) return;
+    const uploadModal = document.querySelector('#recipeUploadModal');
+    if (recipes.length === 0) {
+      grid.innerHTML = `
+        <div style="grid-column:1/-1;background:#FAF8F2;border:1.5px dashed #D5CEBE;border-radius:16px;padding:36px 20px;text-align:center;">
+          <span style="font-size:2.2rem;display:block;margin-bottom:8px;">🍳</span>
+          <strong style="color:var(--color-forest);font-size:1.1rem;display:block;margin-bottom:6px;">No Community Recipes Published Yet</strong>
+          <p style="font-size:0.88rem;color:#5B665E;max-width:460px;margin:0 auto 16px;">Be the first chef or home cook to share your favorite corn grits dish!</p>
+          <button type="button" class="btn-know-more btn-upload-recipe-main" data-open-modal="recipeUpload"><span>🍳 Upload Your Recipe &rarr;</span></button>
+        </div>`;
+      grid.querySelectorAll('[data-open-modal="recipeUpload"]').forEach(b => {
+        b.addEventListener('click', () => { if (uploadModal) uploadModal.classList.add('is-active'); });
+      });
+      return;
+    }
+    grid.innerHTML = recipes.map(r => {
+      const ingLines   = (r.ingredients||'').split('\n').map(s=>s.trim()).filter(Boolean);
+      const ingPreview = ingLines.slice(0,4);
+      const ingMore    = ingLines.length > 4 ? `+${ingLines.length-4} more` : '';
+      return `
+        <article class="community-recipe-card" data-recipe-id="${r.id}">
+          <div class="recipe-img-wrap">
+            <img src="${r.image||'images/recipes/cheese-grits.jpg'}" alt="${r.title}" width="400" height="260" loading="lazy">
+            <span class="recipe-badge-floating"><span>⏱️ ${r.prepTime||'25 Mins'}</span> &bull; <span>🍽️ ${r.servings||'4 Servings'}</span></span>
+            <span class="badge-chef-approved"><span>✨ Approved Recipe</span></span>
+          </div>
+          <div class="recipe-content">
+            <div>
+              <span class="recipe-tag-grade">${r.grade||r.gritsGrade||'Corn Grits'}</span>
+              <h4 class="recipe-title" style="margin-top:4px;">${r.title}</h4>
+              <div class="recipe-author-byline">
+                <span>👨‍🍳 By <strong>${r.author||'Community Chef'}</strong></span>
+                <span>&bull;</span>
+                <span>📂 ${r.category||'Dishes'}</span>
+              </div>
+              <ul class="recipe-ingredients-list" style="margin-bottom:8px;">
+                ${ingPreview.map(ing=>`<li class="recipe-ingredient-chip">${ing}</li>`).join('')}
+                ${ingMore ? `<li class="recipe-ingredient-chip" style="background:#FFF5DD;color:#8C5E11;font-weight:700;">${ingMore}</li>` : ''}
+              </ul>
+            </div>
+            <div>
+              <button type="button" class="btn-view-recipe" data-view-recipe="${r.id}"><span>View Full Recipe &amp; Cooking Steps 📖</span></button>
+            </div>
+          </div>
+        </article>`;
+    }).join('');
+    // Bind detail buttons — store recipes in closure for lookup
+    grid.querySelectorAll('[data-view-recipe]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-view-recipe');
+        const recipe = recipes.find(r => r.id === id);
+        if (recipe) openRecipeDetailDirect(recipe);
+      });
+    });
   }
 
   // Update Badge Counts
@@ -1016,6 +1098,30 @@ function initRecipeCommunity() {
     openModal(detailModal);
   }
 
+  // ── Direct version used by Firebase-loaded recipes ──
+  function openRecipeDetailDirect(recipe) {
+    if (!detailModal) return;
+    const imgEl      = detailModal.querySelector('#detailRecipeImg');
+    const catEl      = detailModal.querySelector('#detailRecipeCategory');
+    const gradeEl    = detailModal.querySelector('#detailRecipeGrade');
+    const titleEl    = detailModal.querySelector('#detailRecipeTitle');
+    const metaEl     = detailModal.querySelector('#detailRecipeMeta');
+    const ingListEl  = detailModal.querySelector('#detailRecipeIngredients');
+    const stepsListEl= detailModal.querySelector('#detailRecipeInstructions');
+    if (imgEl)   { imgEl.src = recipe.image || 'images/recipes/cheese-grits.jpg'; imgEl.alt = recipe.title; }
+    if (catEl)   catEl.textContent   = '📂 ' + (recipe.category || 'Corn Grits Recipe');
+    if (gradeEl) gradeEl.textContent = '🌾 ' + (recipe.grade || recipe.gritsGrade || 'Corn Grits');
+    if (titleEl) titleEl.textContent = recipe.title;
+    if (metaEl)  metaEl.innerHTML = `
+      <span class="recipe-meta-item">👨‍🍳 Chef: <strong>${recipe.author||'Community Cook'}</strong></span>
+      <span class="recipe-meta-item">⏱️ Prep: <strong>${recipe.prepTime||'25 Mins'}</strong></span>
+      <span class="recipe-meta-item">🍽️ Serves: <strong>${recipe.servings||'4'}</strong></span>
+      <span class="recipe-meta-item" style="color:#276749;">✅ Live on Website</span>`;
+    if (ingListEl)   ingListEl.innerHTML   = (recipe.ingredients||'').split('\n').map(s=>s.trim()).filter(Boolean).map(i=>`<li><span>🌽</span> <span>${i}</span></li>`).join('');
+    if (stepsListEl) stepsListEl.innerHTML = (recipe.instructions||'').split('\n').map(s=>s.trim()).filter(Boolean).map(s=>`<li>${s.replace(/^\d+[.)]\s*/,'')}</li>`).join('');
+    openModal(detailModal);
+  }
+
   // Render Admin Review List
   let currentAdminTab = 'pending';
   function renderAdminList(tab = 'pending') {
@@ -1264,39 +1370,68 @@ function initRecipeCommunity() {
       }
 
       const newRecipe = {
-        id: 'rec_' + Date.now(),
         title: title,
         author: author,
         category: category || 'Savory Mains & Bowls',
         grade: grade || 'Grits 101 (Coarse / Flaking)',
+        gritsGrade: grade || 'Grits 101 (Coarse / Flaking)',
         prepTime: prepTime || '25 Mins',
         servings: servings || '4 Servings',
         image: currentPhotoData || 'images/recipes/cheese-grits.jpg',
         ingredients: ingredients,
         instructions: instructions,
-        status: 'pending', // Pending admin approval!
-        createdAt: new Date().toISOString()
+        status: 'pending',
+        submittedAt: new Date().toISOString()
       };
 
-      const recipes = getRecipes();
-      recipes.unshift(newRecipe);
-      saveRecipes(recipes);
+      // ── Try Firebase first; fall back to localStorage ──
+      const firebaseAvailable = (
+        typeof CG_FIREBASE_READY !== 'undefined' &&
+        CG_FIREBASE_READY &&
+        typeof firebase !== 'undefined'
+      );
 
-      // Reset form
-      uploadForm.reset();
-      clearPreview();
-      closeModal(uploadModal);
+      if (firebaseAvailable) {
+        const submitBtn = uploadForm.querySelector('[type="submit"]');
+        if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Submitting...'; }
 
-      // Update badge counters immediately
-      updateBadges();
-
-      // Show Success Modal
-      if (successModal) {
-        const authorEl = successModal.querySelector('#successAuthorName');
-        const titleEl = successModal.querySelector('#successRecipeTitle');
-        if (authorEl) authorEl.textContent = author;
-        if (titleEl) titleEl.textContent = `"${title}"`;
-        openModal(successModal);
+        firebase.firestore().collection('recipes').add({
+          ...newRecipe,
+          submittedAt: firebase.firestore.FieldValue.serverTimestamp()
+        }).then(() => {
+          uploadForm.reset();
+          clearPreview();
+          closeModal(uploadModal);
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.innerHTML = '<span>🍳 Submit Recipe for Admin Approval &rarr;</span>'; }
+          if (successModal) {
+            const authorEl = successModal.querySelector('#successAuthorName');
+            const titleEl  = successModal.querySelector('#successRecipeTitle');
+            if (authorEl) authorEl.textContent = author;
+            if (titleEl)  titleEl.textContent  = `"${title}"`;
+            openModal(successModal);
+          }
+        }).catch(err => {
+          console.error('Firebase submit error:', err);
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.innerHTML = '<span>🍳 Submit Recipe for Admin Approval &rarr;</span>'; }
+          alert('Submission failed. Please try again.');
+        });
+      } else {
+        // Local localStorage fallback
+        newRecipe.id = 'rec_' + Date.now();
+        const recipes = getRecipes();
+        recipes.unshift(newRecipe);
+        saveRecipes(recipes);
+        uploadForm.reset();
+        clearPreview();
+        closeModal(uploadModal);
+        updateBadges();
+        if (successModal) {
+          const authorEl = successModal.querySelector('#successAuthorName');
+          const titleEl  = successModal.querySelector('#successRecipeTitle');
+          if (authorEl) authorEl.textContent = author;
+          if (titleEl)  titleEl.textContent  = `"${title}"`;
+          openModal(successModal);
+        }
       }
     });
   }
