@@ -4,10 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard — CornGrits.in</title>
-  <link rel="icon" type="image/svg+xml" href="images/favicon.svg?v=corn2">
-  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png?v=corn2">
-  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png?v=corn2">
-  <link rel="shortcut icon" href="images/favicon.ico?v=corn2">
+    <!-- High-Compatibility Favicon Suite -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=corn3">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=corn3">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=corn3">
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=corn3">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png?v=corn3">
 
   <!-- Firebase SDK (compat v9) -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
@@ -162,7 +164,7 @@
     </div>
     <h2>Admin Dashboard</h2>
     <p class="sub">Sign in to manage recipe submissions — approve, reject, or delete.</p>
-    <div class="firebase-mode-pill local" id="loginModePill">⚡ Local Mode</div>
+    <div class="firebase-mode-pill local" id="loginModePill" style="display:none;">⚡ Local Mode</div>
     <form id="loginForm">
       <div class="form-group">
         <label for="adminEmail">Email</label>
@@ -183,16 +185,14 @@
   <nav class="topbar">
     <div class="topbar-logo">🌽 CornGrits.in <span class="topbar-badge">ADMIN</span></div>
     <div class="topbar-right">
-      <span class="mode-pill local" id="topModePill">⚡ Local</span>
+      <span class="mode-pill local" id="topModePill" style="display:none;">⚡ Local</span>
       <span class="admin-email-pill" id="adminEmailDisplay"></span>
       <button class="btn-logout" id="logoutBtn">Logout</button>
     </div>
   </nav>
 
   <div class="dash-wrap">
-    <div class="notice-bar local" id="noticeBar">
-      ⚡ <strong>Local Mode:</strong> Recipe data is stored only in this browser. To manage recipes from any device, complete the Firebase setup in <code>js/firebase-config.js</code>.
-    </div>
+    <div class="notice-bar local" id="noticeBar" style="display:none;"></div>
 
     <!-- Stats -->
     <div class="stats-row">
@@ -263,12 +263,21 @@ function setModeUI() {
   const topPill   = document.getElementById('topModePill');
   const notice    = document.getElementById('noticeBar');
   if (useFirebase) {
-    loginPill.textContent = '🔥 Firebase Live Mode';
-    loginPill.className   = 'firebase-mode-pill live';
-    topPill.textContent   = '🔥 Firebase';
-    topPill.className     = 'mode-pill firebase';
-    notice.className      = 'notice-bar firebase';
-    notice.innerHTML      = '🔥 <strong>Firebase Mode:</strong> You are connected to Firebase. Recipes submitted from any device will appear here in real time.';
+    if (loginPill) {
+      loginPill.textContent = '🔥 Cloud Live Mode';
+      loginPill.className   = 'firebase-mode-pill live';
+      loginPill.style.display = 'inline-block';
+    }
+    if (topPill) {
+      topPill.textContent   = '🔥 Cloud Active';
+      topPill.className     = 'mode-pill firebase';
+      topPill.style.display = 'inline-block';
+    }
+    if (notice) {
+      notice.className      = 'notice-bar firebase';
+      notice.innerHTML      = '🔥 <strong>Cloud Database Connected:</strong> Real-time syncing active across all devices.';
+      notice.style.display  = 'block';
+    }
   }
 }
 setModeUI();
