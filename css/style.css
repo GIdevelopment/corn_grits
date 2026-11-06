@@ -392,7 +392,8 @@ a {
 }
 
 /* Mobile Toggle & Navigation Drawer */
-.mobile-toggle {
+.mobile-toggle,
+.menu-toggle {
   display: none;
   background: none;
   border: none;
@@ -421,16 +422,16 @@ a {
 .mobile-nav-drawer {
   position: fixed;
   top: 0;
-  right: -340px;
-  width: 300px;
-  max-width: 86vw;
+  right: -360px;
+  width: 320px;
+  max-width: 88vw;
   height: 100vh;
   height: 100dvh;
   background: #FFFDF9;
   z-index: 9999;
-  padding: 26px 20px;
+  padding: 24px 20px 30px;
   transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: -8px 0 32px rgba(10, 26, 17, 0.2);
+  box-shadow: -8px 0 32px rgba(10, 26, 17, 0.25);
   display: flex;
   flex-direction: column;
   overflow-y: auto;
@@ -446,9 +447,10 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 18px;
-  margin-bottom: 18px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
   border-bottom: 1px solid #ECE2D0;
+  flex-shrink: 0;
 }
 
 .mobile-drawer-brand {
@@ -460,18 +462,18 @@ a {
 .mobile-drawer-logo {
   font-family: var(--font-sans);
   color: #163E28;
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 800;
   letter-spacing: -0.01em;
 }
 
 .mobile-drawer-close {
   background: #F4EFE4;
-  border: none;
-  width: 36px;
-  height: 36px;
+  border: 1px solid rgba(22, 62, 40, 0.1);
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   line-height: 1;
   color: #163E28;
   cursor: pointer;
@@ -481,7 +483,8 @@ a {
   transition: all 0.2s ease;
 }
 
-.mobile-drawer-close:hover {
+.mobile-drawer-close:hover,
+.mobile-drawer-close:active {
   background: #E8DECE;
   transform: rotate(90deg);
   color: #0E2A1A;
@@ -499,9 +502,9 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 14px;
-  min-height: 46px;
-  font-size: 0.94rem;
+  padding: 13px 16px;
+  min-height: 48px;
+  font-size: 1rem;
   font-weight: 600;
   color: #1D3B26;
   border-radius: 12px;
@@ -509,10 +512,11 @@ a {
   transition: all 0.2s ease;
 }
 
-.mobile-nav-link:hover {
-  background: rgba(250, 166, 26, 0.14);
+.mobile-nav-link:hover,
+.mobile-nav-link:active {
+  background: rgba(250, 166, 26, 0.16);
   color: #163E28;
-  padding-left: 18px;
+  padding-left: 20px;
 }
 
 .mobile-nav-link.is-active {
@@ -523,18 +527,19 @@ a {
 }
 
 .mobile-sub-link {
-  padding: 6px 14px 6px 30px;
-  font-size: 0.82rem;
+  padding: 8px 16px 8px 34px;
+  font-size: 0.88rem;
   color: #8C6415;
   font-weight: 600;
   display: block;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
-.mobile-sub-link:hover {
+.mobile-sub-link:hover,
+.mobile-sub-link:active {
   color: #D47A00;
-  padding-left: 34px;
+  padding-left: 38px;
 }
 
 /* Drawer Footer */
@@ -571,6 +576,7 @@ a {
 
 @media (min-width: 861px) {
   .mobile-toggle,
+  .menu-toggle,
   .mobile-nav-backdrop,
   .mobile-nav-drawer {
     display: none !important;
@@ -581,19 +587,28 @@ a {
   .nav-links {
     display: none;
   }
-  .mobile-toggle {
+  .mobile-toggle,
+  .menu-toggle {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     color: #163E28;
-    background: rgba(22, 62, 40, 0.06);
-    transition: background 0.2s ease;
+    background: rgba(22, 62, 40, 0.07);
+    border: 1px solid rgba(22, 62, 40, 0.12);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    flex-shrink: 0;
   }
-  .mobile-toggle:hover {
-    background: rgba(250, 166, 26, 0.2);
+  .mobile-toggle:hover,
+  .menu-toggle:hover,
+  .mobile-toggle:active,
+  .menu-toggle:active {
+    background: rgba(250, 166, 26, 0.25);
+    border-color: rgba(250, 166, 26, 0.5);
+    transform: scale(1.05);
   }
   .logo-brand-text {
     font-size: 1.05rem;
@@ -613,27 +628,32 @@ a {
     display: none;
   }
   .header-wrap {
-    padding: 0 10px;
-    top: 8px;
+    padding: 0 12px;
+    top: 10px;
   }
   .navbar-pill {
-    padding: 6px 12px;
+    padding: 8px 14px;
+    border-radius: 9999px;
   }
 }
 
 @media (max-width: 480px) {
   .logo-brand-text {
-    font-size: 0.94rem;
+    font-size: 1.05rem;
   }
   .corn-kernel-icon {
-    width: 22px;
-    height: 22px;
+    width: 26px;
+    height: 26px;
   }
 }
 
 @media (max-width: 360px) {
   .logo-brand-text {
-    font-size: 0.86rem;
+    font-size: 0.95rem;
+  }
+  .corn-kernel-icon {
+    width: 24px;
+    height: 24px;
   }
 }
 

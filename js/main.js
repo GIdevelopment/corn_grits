@@ -36,10 +36,10 @@ function initHeaderScroll() {
 
 /* 2. Mobile Drawer Navigation */
 function initMobileMenu() {
-  const toggle = document.querySelector('.mobile-toggle');
+  const toggles = document.querySelectorAll('.mobile-toggle, #menuToggle, .menu-toggle');
   const drawer = document.querySelector('.mobile-nav-drawer');
   const backdrop = document.querySelector('.mobile-nav-backdrop');
-  if (!toggle || !drawer || !backdrop) return;
+  if (!toggles.length || !drawer || !backdrop) return;
 
   const closeBtn = drawer.querySelector('.mobile-drawer-close');
 
@@ -49,9 +49,12 @@ function initMobileMenu() {
     document.body.style.overflow = open ? 'hidden' : '';
   };
 
-  toggle.addEventListener('click', () => {
-    const isOpen = drawer.classList.contains('is-open');
-    setOpen(!isOpen);
+  toggles.forEach(toggle => {
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = drawer.classList.contains('is-open');
+      setOpen(!isOpen);
+    });
   });
 
   if (closeBtn) {
