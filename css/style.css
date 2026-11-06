@@ -585,7 +585,7 @@ a {
 
 @media (max-width: 860px) {
   .nav-links {
-    display: none;
+    display: none !important;
   }
   .mobile-toggle,
   .menu-toggle {
