@@ -1888,12 +1888,32 @@ a {
 @media (max-width: 860px) {
   .footer-grid {
     grid-template-columns: 1fr 1fr;
+    gap: 24px 20px;
   }
 }
 
-@media (max-width: 540px) {
+@media (max-width: 580px) {
   .footer-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 14px;
+  }
+  .footer-brand {
+    grid-column: 1 / -1;
+    margin-bottom: 4px;
+  }
+  .footer-grid > div:last-child {
+    grid-column: 1 / -1;
+    margin-top: 8px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .footer-links a {
+    font-size: 0.88rem;
+    padding: 3px 0;
+  }
+  .footer-col-title {
+    font-size: 0.96rem;
+    margin-bottom: 10px;
   }
 }
 
