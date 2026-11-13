@@ -4489,7 +4489,7 @@ textarea {
 
 
 /* --------------------------------------------------------------------------
-   12. Universal CornGrits.in Watermark Overlay on Images
+   12. Universal CornGrits.in Watermark Overlay on Images (Centered)
    -------------------------------------------------------------------------- */
 .recipe-img-wrap::after,
 .editorial-img-wrap::after,
@@ -4499,18 +4499,19 @@ textarea {
 .product-card-img-wrap::after {
   content: 'CornGrits.in';
   position: absolute;
-  bottom: 12px;
-  right: 12px;
-  background: rgba(14, 38, 24, 0.82);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(14, 38, 24, 0.85);
   color: #FFFFFF;
   font-family: var(--font-sans);
-  font-size: 0.72rem;
+  font-size: 0.76rem;
   font-weight: 800;
   letter-spacing: 0.04em;
-  padding: 3px 9px;
+  padding: 4px 12px;
   border-radius: 50px;
-  border: 1px solid rgba(250, 166, 26, 0.55);
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+  border: 1.5px solid rgba(250, 166, 26, 0.65);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
   pointer-events: none;
   z-index: 5;
   backdrop-filter: blur(4px);
@@ -4523,18 +4524,19 @@ textarea {
 .app-card-img-wrap::before {
   content: 'CornGrits.in';
   position: absolute;
-  bottom: 52px;
-  right: 10px;
-  background: rgba(14, 38, 24, 0.82);
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(14, 38, 24, 0.85);
   color: #FFFFFF;
   font-family: var(--font-sans);
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.04em;
-  padding: 2px 8px;
+  padding: 3px 10px;
   border-radius: 50px;
-  border: 1px solid rgba(250, 166, 26, 0.5);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  border: 1.5px solid rgba(250, 166, 26, 0.6);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
   pointer-events: none;
   z-index: 3;
   backdrop-filter: blur(4px);
