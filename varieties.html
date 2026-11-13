@@ -19,7 +19,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=corn3">
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=corn3">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png?v=corn3">
-  <link rel="stylesheet" href="css/style.css?v=1.6.0">
+  <link rel="stylesheet" href="css/style.css?v=1.7.0">
 </head>
 
 <body>
@@ -876,67 +876,68 @@
   </footer>
 
   <!-- Contact & Sample Request Modal -->
-  <div id="contactModal" class="contact-modal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle">
-    <div class="contact-modal-dialog">
-      <div class="contact-modal-header">
-        <div>
-          <h3 id="modalTitle">Commercial Inquiry</h3>
-          <p id="modalSubtitle" style="color: #6A776D; font-size: 0.82rem; margin-top: 2px;">Submit requirements for bulk corn grits or customized mesh calibrations</p>
-        </div>
-        <button id="closeContactModal" class="modal-close" aria-label="Close dialog">&times;</button>
+  <div id="contactModal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <button id="closeContactModal" class="modal-close" aria-label="Close dialog">&times;</button>
+      
+      <div style="text-align: center; margin-bottom: 20px;">
+        <span style="font-size: 0.8rem; font-weight: 700; color: #FAA61A; text-transform: uppercase; letter-spacing: 0.08em;">Commercial Inquiry</span>
+        <h3 id="modalTitle" style="color: #163E28; font-size: 1.6rem; font-weight: 800; margin-top: 2px;">Inquire for Supply</h3>
+        <p id="modalSubtitle" style="font-size: 0.85rem; color: #5B665E; margin-top: 4px;">Connect with Certified Suppliers &amp; Millers</p>
       </div>
-      <div class="contact-modal-body">
-        <form id="inquiryForm" action="https://formsubmit.co/contact@corngrits.in" method="POST">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_subject" value="New Corn Grits Commercial Inquiry">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="contactName">Full Name *</label>
-              <input type="text" id="contactName" required placeholder="John Doe">
-            </div>
-            <div class="form-group">
-              <label for="contactCompany">Company / Facility *</label>
-              <input type="text" id="contactCompany" required placeholder="ABC Foods Ltd.">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="contactEmail">Business Email *</label>
-              <input type="email" id="contactEmail" required placeholder="john@company.com">
-            </div>
-            <div class="form-group">
-              <label for="contactPhone">Phone / WhatsApp</label>
-              <input type="tel" id="contactPhone" placeholder="+1 (555) 000-0000">
-            </div>
-          </div>
+
+      <form action="https://formsubmit.co/contact@corngrits.in" method="POST">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_subject" value="New Corn Grits Commercial Inquiry">
+        <div class="form-row-2">
           <div class="form-group">
-            <label for="contactProduct">Product of Interest *</label>
-            <select id="contactProduct" required>
+            <label class="form-label" for="contactName">Your Name</label>
+            <input type="text" id="contactName" class="form-control" required placeholder="Full Name">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="contactCompany">Company / Business Name</label>
+            <input type="text" id="contactCompany" class="form-control" placeholder="Company Name">
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label" for="contactEmail">Email Address</label>
+            <input type="email" id="contactEmail" class="form-control" required placeholder="name@company.com">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="contactProduct">Product of Interest</label>
+            <select id="contactProduct" class="form-control">
               <option value="Corn Grits 101 (Coarse / Flaking)">Corn Grits 101 (Coarse / Flaking)</option>
               <option value="Corn Grits 101A (Brewer's Low-Fat)">Corn Grits 101A (Brewer's Low-Fat)</option>
-              <option value="Corn Grits 108 (Medium Granulation)" selected>Corn Grits 108 (Medium Granulation)</option>
+              <option value="Corn Grits 108 (Medium Granulation)">Corn Grits 108 (Medium Granulation)</option>
               <option value="Corn Grits 112 (Fine Cut)">Corn Grits 112 (Fine Cut)</option>
               <option value="Corn Meal">Corn Meal</option>
               <option value="Corn Flour">Corn Flour</option>
-              <option value="Custom Mesh Specification">Custom Mesh Specification</option>
+              <option value="Maize Broken">Maize Broken</option>
+              <option value="Bulk / Custom Mesh Specification">Bulk / Custom Mesh Specification</option>
             </select>
           </div>
-          <div class="form-group">
-            <label for="contactMessage">Message / Specific Granulation Requirements</label>
-            <textarea id="contactMessage" rows="3" placeholder="Provide target monthly tonnage, packaging type, delivery port, or mesh sizing..."></textarea>
-          </div>
-          <button type="submit" class="btn-contact" style="width: 100%; justify-content: center; padding: 12px; margin-top: 8px;">
-            <span>Submit Commercial Inquiry &rarr;</span>
-          </button>
-          <div style="text-align: center; margin-top: 14px; font-size: 0.82rem; color: #6A776D;">
-            Prefer direct email? Send specs to: <a href="mailto:contact@corngrits.in" style="color: #163E28; font-weight: 700; text-decoration: underline;">contact@corngrits.in</a>
-          </div>
-        </form>
-      </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contactMessage">Volume &amp; Requirements</label>
+          <textarea id="contactMessage" class="form-control" rows="3" placeholder="Tell us about required quantity (MT), packaging, or destination..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-contact" style="width: 100%; justify-content: center; padding: 12px; font-size: 0.95rem; font-weight: 700;">
+          <span>Submit Commercial Inquiry &rarr;</span>
+        </button>
+        <div style="text-align: center; margin-top: 14px; font-size: 0.82rem; color: #6A776D;">
+          Prefer direct email? Send specs to: <a href="mailto:contact@corngrits.in" style="color: #163E28; font-weight: 700; text-decoration: underline;">contact@corngrits.in</a>
+        </div>
+      </form>
     </div>
   </div>
 
-  <script src="js/main.js?v=1.6.0"></script>
+  <script src="js/main.js?v=1.7.0"></script>
 </body>
 </html>
