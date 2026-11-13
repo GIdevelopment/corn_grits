@@ -15,7 +15,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=corn3">
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=corn3">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png?v=corn3">
-  <link rel="stylesheet" href="css/style.css?v=1.7.0">
+  <link rel="stylesheet" href="css/style.css?v=1.8.0">
 </head>
 <body>
 
@@ -476,9 +476,6 @@
             <button type="button" class="btn-upload-recipe-main" data-open-modal="recipeUpload">
               <span>🍳 Upload Your Recipe &rarr;</span>
             </button>
-            <button type="button" class="btn-admin-pill" data-open-modal="recipeAdmin" title="Culinary Admin Moderation Panel">
-              <span>🔑 Admin Review (<span class="admin-pending-count">0</span>)</span>
-            </button>
           </div>
         </div>
 
@@ -834,15 +831,12 @@
         Thank you, <strong id="successAuthorName">Chef</strong>! Your recipe <strong id="successRecipeTitle">"..."</strong> is now recorded and placed in <strong>pending review</strong>.
       </p>
       <div style="background: #FAF8F2; border: 1px dashed #D5CEBE; border-radius: 12px; padding: 14px 16px; margin-bottom: 22px; font-size: 0.84rem; color: #435147; text-align: left;">
-        <strong>Admin Approval Demo:</strong><br>
-        You can open the culinary admin moderation panel right now to review, approve, and watch this recipe appear live on the website!
+        <strong>Admin Review:</strong><br>
+        Your recipe will be reviewed and verified by the culinary team before being published live in our community gallery.
       </div>
       <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-        <button type="button" class="btn-admin-pill" id="btnSuccessOpenAdmin" style="padding: 10px 20px; font-size: 0.88rem; background: var(--color-forest); color: #FFFFFF; border-color: var(--color-forest);">
-          <span>🔑 Open Admin Review Panel &rarr;</span>
-        </button>
-        <button type="button" class="btn-know-more" id="btnSuccessClose" style="padding: 10px 20px; font-size: 0.88rem;">
-          <span>Done</span>
+        <button type="button" class="btn-know-more" id="btnSuccessClose" style="padding: 10px 24px; font-size: 0.88rem;">
+          <span>Close &amp; Continue</span>
         </button>
       </div>
     </div>
@@ -935,6 +929,6 @@
       try { firebase.initializeApp(FIREBASE_CONFIG); } catch(e) {}
     }
   </script>
-  <script src="js/main.js?v=1.7.0"></script>
+  <script src="js/main.js?v=1.8.0"></script>
 </body>
 </html>
