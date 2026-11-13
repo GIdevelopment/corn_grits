@@ -315,28 +315,33 @@ function initSmoothScroll() {
 function initCornBounce() {
   // Select all interactive tabs, brand logo, and primary buttons
   const clickables = document.querySelectorAll(
-    '.nav-item, .btn-contact, .btn-contact-hero, .btn-hero-primary, .btn-hero-secondary, .btn-hero-contact, .dropdown-link, .logo-corn, .btn-know-more, .mobile-nav-link, .hero-glass-pill'
+    '.nav-item, .btn-contact, .btn-contact-hero, .btn-hero-primary, .btn-hero-secondary, .btn-hero-contact, .dropdown-link, .logo-corn, .btn-know-more, .mobile-nav-link, .hero-glass-pill, .mobile-drawer-brand'
   );
 
   clickables.forEach(el => {
     // Pointerdown gives instant tactile feedback upon click/touch
     el.addEventListener('pointerdown', (e) => {
       // Add bouncy pulse to the clicked element
-      el.classList.remove('nav-clicked-bounce');
+      el.classList.remove('nav-clicked-bounce', 'logo-popping');
       // Trigger reflow to restart animation if clicked repeatedly
       void el.offsetWidth;
       el.classList.add('nav-clicked-bounce');
+      if (el.classList.contains('logo-corn') || el.classList.contains('mobile-drawer-brand')) {
+        el.classList.add('logo-popping');
+      }
 
       setTimeout(() => {
-        el.classList.remove('nav-clicked-bounce');
-      }, 500);
+        el.classList.remove('nav-clicked-bounce', 'logo-popping');
+      }, 550);
 
       // Coordinates for popping corn kernels
       const rect = el.getBoundingClientRect();
       const x = e.clientX && e.clientX > 0 ? e.clientX : rect.left + rect.width / 2;
       const y = e.clientY && e.clientY > 0 ? e.clientY : rect.top + rect.height / 2;
 
-      spawnCornBounceParticles(x, y, 7);
+      // Burst more popping corn kernels on logo click (12 kernels) vs normal buttons (6)
+      const isLogo = el.classList.contains('logo-corn') || el.classList.contains('mobile-drawer-brand');
+      spawnCornBounceParticles(x, y, isLogo ? 12 : 6);
     });
   });
 }
