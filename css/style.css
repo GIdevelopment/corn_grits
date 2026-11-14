@@ -118,13 +118,13 @@ a {
 }
 
 .navbar-pill {
-  max-width: 1220px;
+  max-width: 1240px;
   margin: 0 auto;
   background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-radius: var(--radius-full);
-  padding: 8px 16px 8px 20px;
+  padding: 4px 18px 4px 22px;
   box-shadow: 0 6px 26px rgba(18, 43, 30, 0.1);
   display: flex;
   align-items: center;
@@ -167,9 +167,9 @@ a {
 }
 
 .brand-emblem-img {
-  height: 54px;
+  height: 72px;
   width: auto;
-  max-width: 220px;
+  max-width: 290px;
   object-fit: contain;
   display: block;
   filter: drop-shadow(0 2px 8px rgba(22, 62, 40, 0.14));
@@ -645,6 +645,20 @@ a {
   }
 }
 
+@media (max-width: 1024px) {
+  .brand-emblem-img {
+    height: 60px;
+    max-width: 240px;
+  }
+}
+
+@media (max-width: 860px) {
+  .brand-emblem-img {
+    height: 52px;
+    max-width: 210px;
+  }
+}
+
 @media (max-width: 640px) {
   .navbar-pill .btn-contact {
     display: none;
@@ -658,22 +672,22 @@ a {
     border-radius: 9999px;
   }
   .brand-emblem-img {
-    height: 44px;
-    max-width: 170px;
+    height: 46px;
+    max-width: 180px;
   }
 }
 
 @media (max-width: 480px) {
   .brand-emblem-img {
-    height: 40px;
-    max-width: 155px;
+    height: 42px;
+    max-width: 165px;
   }
 }
 
 @media (max-width: 360px) {
   .brand-emblem-img {
-    height: 36px;
-    max-width: 135px;
+    height: 38px;
+    max-width: 145px;
   }
 }
 
