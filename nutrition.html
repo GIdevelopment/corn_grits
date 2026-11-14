@@ -15,7 +15,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png?v=corn3">
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico?v=corn3">
   <link rel="apple-touch-icon" sizes="180x180" href="images/favicon.png?v=corn3">
-  <link rel="stylesheet" href="css/style.css?v=2.4.0">
+  <link rel="stylesheet" href="css/style.css?v=2.5.0">
 </head>
 <body>
 
@@ -139,8 +139,8 @@
       </section>
 
       <!-- Section 1: Nutritional Profile (Per 100g) -->
-      <section style="background: #FFFFFF; border-radius: 20px; padding: 35px; border: 1px solid #EBE3D3; margin-bottom: 40px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; margin-bottom: 20px;">
+      <section class="nutrition-card-section">
+        <div class="nutrition-header-row" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; margin-bottom: 20px;">
           <div>
             <span style="color: var(--color-gold); font-size: 0.85rem; font-weight: 700; text-transform: uppercase;">Laboratory Analyzed</span>
             <h2 style="color: var(--color-forest); font-size: 1.6rem; margin-top: 4px;">Nutritional Profile (Per 100g Serving)</h2>
@@ -150,64 +150,80 @@
           </span>
         </div>
 
-        <div style="overflow-x: auto; margin-bottom: 25px;">
-          <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+        <div class="nutrition-table-wrap">
+          <table class="nutrition-table">
             <thead>
-              <tr style="background: #FAF8F2; color: #163E28; border-bottom: 2px solid #EBE3D3;">
-                <th style="padding: 12px 14px; text-align: left;">Nutrient</th>
-                <th style="padding: 12px 14px; text-align: left;">Standard Value</th>
-                <th style="padding: 12px 14px; text-align: left;">Daily Value (% DV)</th>
-                <th style="padding: 12px 14px; text-align: left;">Functional Food Property</th>
+              <tr>
+                <th>Nutrient</th>
+                <th>Standard Value</th>
+                <th>Daily Value (% DV)</th>
+                <th>Functional Food Property</th>
               </tr>
             </thead>
             <tbody>
-              <tr style="border-bottom: 1px solid #EFE8DA;">
-                <td style="padding: 12px 14px; font-weight: 700; color: #163E28;">Energy</td>
-                <td style="padding: 12px 14px;">362 kcal (1515 kJ)</td>
-                <td style="padding: 12px 14px;">18%</td>
-                <td style="padding: 12px 14px; color: #5B665E;">Sustained complex carbohydrate release</td>
-              </tr>
-              <tr style="border-bottom: 1px solid #EFE8DA;">
-                <td style="padding: 12px 14px; font-weight: 700; color: #163E28;">Total Carbohydrates</td>
-                <td style="padding: 12px 14px;">79.5 g</td>
-                <td style="padding: 12px 14px;">29%</td>
-                <td style="padding: 12px 14px; color: #5B665E;">Optimal amylose/amylopectin ratio for extrusion</td>
-              </tr>
-              <tr style="border-bottom: 1px solid #EFE8DA;">
-                <td style="padding: 12px 14px; font-weight: 700; color: #163E28;">Dietary Fiber</td>
-                <td style="padding: 12px 14px;">2.2 g</td>
-                <td style="padding: 12px 14px;">8%</td>
-                <td style="padding: 12px 14px; color: #5B665E;">Gentle, soluble &amp; insoluble corn roughage</td>
-              </tr>
-              <tr style="border-bottom: 1px solid #EFE8DA;">
-                <td style="padding: 12px 14px; font-weight: 700; color: #163E28;">Protein (Zein)</td>
-                <td style="padding: 12px 14px;">8.2 g</td>
-                <td style="padding: 12px 14px;">16%</td>
-                <td style="padding: 12px 14px; color: #5B665E;">Pure plant protein with zero wheat gluten</td>
-              </tr>
-              <tr style="border-bottom: 1px solid #EFE8DA;">
-                <td style="padding: 12px 14px; font-weight: 700; color: #163E28;">Total Fat (Degermed)</td>
-                <td style="padding: 12px 14px; color: #287247; font-weight: 700;">0.85 g (&le; 1.0%)</td>
-                <td style="padding: 12px 14px;">1%</td>
-                <td style="padding: 12px 14px; color: #5B665E;">Guarantees long shelf stability without oxidation</td>
-              </tr>
-              <tr style="border-bottom: 1px solid #EFE8DA;">
-                <td style="padding: 12px 14px; font-weight: 700; color: #163E28;">Iron (Fe)</td>
-                <td style="padding: 12px 14px;">1.8 mg</td>
-                <td style="padding: 12px 14px;">10%</td>
-                <td style="padding: 12px 14px; color: #5B665E;">Crucial for hemoglobin and metabolic vitality</td>
-              </tr>
-              <tr style="border-bottom: 1px solid #EFE8DA;">
-                <td style="padding: 12px 14px; font-weight: 700; color: #163E28;">Thiamine (Vit B1)</td>
-                <td style="padding: 12px 14px;">0.28 mg</td>
-                <td style="padding: 12px 14px;">23%</td>
-                <td style="padding: 12px 14px; color: #5B665E;">Cellular energy production cofactor</td>
+              <tr>
+                <td class="nutrition-row-header">
+                  <span class="nutrient-name">Energy</span>
+                  <span class="nutrient-value">362 kcal (1515 kJ)</span>
+                </td>
+                <td><span class="nutrient-dv-badge">18% DV</span></td>
+                <td class="nutrient-property">Sustained complex carbohydrate release</td>
               </tr>
               <tr>
-                <td style="padding: 12px 14px; font-weight: 700; color: #163E28;">Gluten Content</td>
-                <td style="padding: 12px 14px; color: #287247; font-weight: 800;">&lt; 5 ppm (ND)</td>
-                <td style="padding: 12px 14px;">&mdash;</td>
-                <td style="padding: 12px 14px; color: #287247; font-weight: 600;">Certified Celiac Safe by FSSAI &amp; Codex</td>
+                <td class="nutrition-row-header">
+                  <span class="nutrient-name">Total Carbohydrates</span>
+                  <span class="nutrient-value">79.5 g</span>
+                </td>
+                <td><span class="nutrient-dv-badge">29% DV</span></td>
+                <td class="nutrient-property">Optimal amylose/amylopectin ratio for extrusion</td>
+              </tr>
+              <tr>
+                <td class="nutrition-row-header">
+                  <span class="nutrient-name">Dietary Fiber</span>
+                  <span class="nutrient-value">2.2 g</span>
+                </td>
+                <td><span class="nutrient-dv-badge">8% DV</span></td>
+                <td class="nutrient-property">Gentle, soluble &amp; insoluble corn roughage</td>
+              </tr>
+              <tr>
+                <td class="nutrition-row-header">
+                  <span class="nutrient-name">Protein (Zein)</span>
+                  <span class="nutrient-value">8.2 g</span>
+                </td>
+                <td><span class="nutrient-dv-badge">16% DV</span></td>
+                <td class="nutrient-property">Pure plant protein with zero wheat gluten</td>
+              </tr>
+              <tr>
+                <td class="nutrition-row-header">
+                  <span class="nutrient-name">Total Fat (Degermed)</span>
+                  <span class="nutrient-value" style="color: #287247;">0.85 g (&le; 1.0%)</span>
+                </td>
+                <td><span class="nutrient-dv-badge">1% DV</span></td>
+                <td class="nutrient-property">Guarantees long shelf stability without oxidation</td>
+              </tr>
+              <tr>
+                <td class="nutrition-row-header">
+                  <span class="nutrient-name">Iron (Fe)</span>
+                  <span class="nutrient-value">1.8 mg</span>
+                </td>
+                <td><span class="nutrient-dv-badge">10% DV</span></td>
+                <td class="nutrient-property">Crucial for hemoglobin and metabolic vitality</td>
+              </tr>
+              <tr>
+                <td class="nutrition-row-header">
+                  <span class="nutrient-name">Thiamine (Vit B1)</span>
+                  <span class="nutrient-value">0.28 mg</span>
+                </td>
+                <td><span class="nutrient-dv-badge">23% DV</span></td>
+                <td class="nutrient-property">Cellular energy production cofactor</td>
+              </tr>
+              <tr>
+                <td class="nutrition-row-header">
+                  <span class="nutrient-name">Gluten Content</span>
+                  <span class="nutrient-value" style="color: #287247;">&lt; 5 ppm (ND)</span>
+                </td>
+                <td><span class="nutrient-dv-badge" style="background: rgba(40, 114, 71, 0.15); color: #287247;">0% (Celiac Safe)</span></td>
+                <td class="nutrient-property" style="color: #287247; font-weight: 600;">Certified Celiac Safe by FSSAI &amp; Codex Alimentarius</td>
               </tr>
             </tbody>
           </table>
@@ -215,32 +231,32 @@
       </section>
 
       <!-- Section 2: Storage & Packaging Protocols -->
-      <section style="background: #FFFFFF; border-radius: 20px; padding: 35px; border: 1px solid #EBE3D3; margin-bottom: 40px;">
+      <section class="nutrition-card-section">
         <span style="color: var(--color-gold); font-size: 0.85rem; font-weight: 700; text-transform: uppercase;">Preservation Science</span>
         <h2 style="color: var(--color-forest); font-size: 1.6rem; margin: 4px 0 16px;">Packaging &amp; Industrial Storage Guidelines</h2>
         <p style="color: #4A564E; font-size: 0.98rem; line-height: 1.65; margin-bottom: 24px;">
           Because dry corn grits have undergone mechanical degermination (removing 95%+ of the oil-rich germ), their shelf stability is substantially superior to whole grain maize. However, adhering to environmental protocols ensures peak gelatinization efficiency:
         </p>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+        <div class="storage-protocols-grid">
           
-          <div style="background: #FAF8F2; border-radius: 14px; padding: 22px; border-left: 4px solid #FAA61A;">
+          <div class="storage-protocol-item">
             <strong style="color: #163E28; font-size: 1.1rem; display: block; margin-bottom: 6px;">Moisture Management (&le; 13.5%)</strong>
-            <p style="font-size: 0.86rem; color: #556257; line-height: 1.6;">
+            <p style="font-size: 0.86rem; color: #556257; line-height: 1.6; margin: 0;">
               Grits leave precision dry mills at 12.0% – 13.5% moisture. Warehouses must maintain relative humidity below 65% to prevent water uptake, fungal growth, or clumped feed lines.
             </p>
           </div>
 
-          <div style="background: #FAF8F2; border-radius: 14px; padding: 22px; border-left: 4px solid #163E28;">
+          <div class="storage-protocol-item border-forest">
             <strong style="color: #163E28; font-size: 1.1rem; display: block; margin-bottom: 6px;">Temperature &amp; Sunlight</strong>
-            <p style="font-size: 0.86rem; color: #556257; line-height: 1.6;">
+            <p style="font-size: 0.86rem; color: #556257; line-height: 1.6; margin: 0;">
               Store in a cool, well-ventilated dry warehouse below 25&deg;C (77&deg;F). Bags should be kept off concrete floors on clean wooden/plastic pallets away from direct solar UV radiation.
             </p>
           </div>
 
-          <div style="background: #FAF8F2; border-radius: 14px; padding: 22px; border-left: 4px solid #7A5B18;">
+          <div class="storage-protocol-item border-gold-dark">
             <strong style="color: #163E28; font-size: 1.1rem; display: block; margin-bottom: 6px;">Shelf Life &amp; Rotation</strong>
-            <p style="font-size: 0.86rem; color: #556257; line-height: 1.6;">
+            <p style="font-size: 0.86rem; color: #556257; line-height: 1.6; margin: 0;">
               Unopened original bags possess a proven shelf life of 12 to 24 months. Implement strict FIFO (First-In, First-Out) inventory rotation to maximize production consistency.
             </p>
           </div>

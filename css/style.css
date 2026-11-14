@@ -4031,6 +4031,186 @@ textarea {
 
 
 /* --------------------------------------------------------------------------
+   Nutrition & Storage Page (Responsive Table & Protocol Cards)
+   -------------------------------------------------------------------------- */
+.nutrition-card-section {
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: clamp(20px, 3.5vw, 35px);
+  border: 1px solid #EBE3D3;
+  margin-bottom: clamp(24px, 4vw, 40px);
+  box-shadow: 0 4px 18px rgba(22, 62, 40, 0.04);
+}
+
+.nutrition-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  border: 1px solid #EBE3D3;
+}
+
+.nutrition-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.nutrition-table th {
+  background: #FAF8F2;
+  color: #163E28;
+  font-weight: 700;
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 2px solid #EBE3D3;
+  white-space: nowrap;
+}
+
+.nutrition-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #EFE8DA;
+  vertical-align: middle;
+}
+
+.storage-protocols-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.storage-protocol-item {
+  background: #FAF8F2;
+  border-radius: 14px;
+  padding: 22px;
+  border-left: 4px solid #FAA61A;
+}
+
+.storage-protocol-item.border-forest {
+  border-left-color: #163E28;
+}
+
+.storage-protocol-item.border-gold-dark {
+  border-left-color: #7A5B18;
+}
+
+/* Mobile Nutrition Card Layout (Profile View <= 680px) */
+@media (max-width: 680px) {
+  .nutrition-card-section {
+    padding: 18px 14px;
+    border-radius: 16px;
+    margin-bottom: 24px;
+  }
+
+  .nutrition-header-row {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 10px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .nutrition-header-row h2 {
+    font-size: 1.25rem !important;
+    line-height: 1.25;
+  }
+
+  /* Transform table into mobile-optimized card list */
+  .nutrition-table-wrap {
+    border: none;
+    overflow-x: visible;
+    margin-bottom: 15px;
+  }
+
+  .nutrition-table,
+  .nutrition-table thead,
+  .nutrition-table tbody,
+  .nutrition-table tr,
+  .nutrition-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .nutrition-table thead {
+    display: none; /* Hide header row on phone screen */
+  }
+
+  .nutrition-table tr {
+    background: #FAF8F2;
+    border: 1px solid #EBE3D3;
+    border-radius: 14px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(22, 62, 40, 0.03);
+  }
+
+  .nutrition-table td {
+    padding: 4px 0 !important;
+    border: none !important;
+    font-size: 0.85rem !important;
+  }
+
+  /* Row 1: Nutrient name & Standard Value */
+  .nutrition-row-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px dashed #E5DCCB;
+    padding-bottom: 6px !important;
+    margin-bottom: 6px;
+  }
+
+  .nutrient-name {
+    font-size: 0.95rem !important;
+    font-weight: 800 !important;
+    color: #163E28 !important;
+  }
+
+  .nutrient-value {
+    font-size: 0.95rem !important;
+    font-weight: 800 !important;
+    color: #FAA61A !important;
+  }
+
+  .nutrient-dv-badge {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(22, 62, 40, 0.08);
+    color: #163E28;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 4px;
+  }
+
+  .nutrient-property {
+    font-size: 0.8rem !important;
+    color: #556258 !important;
+    line-height: 1.45 !important;
+  }
+
+  .storage-protocols-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .storage-protocol-item {
+    padding: 14px 14px 14px 16px;
+    border-radius: 12px;
+  }
+
+  .storage-protocol-item strong {
+    font-size: 0.98rem !important;
+    margin-bottom: 4px !important;
+  }
+
+  .storage-protocol-item p {
+    font-size: 0.84rem !important;
+    line-height: 1.5 !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
    Anatomy & Manufacturing Excellence Cards (Responsive & Mobile-Compact)
    -------------------------------------------------------------------------- */
 .anatomy-card-wrapper,
