@@ -15,7 +15,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png?v=corn3">
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico?v=corn3">
   <link rel="apple-touch-icon" sizes="180x180" href="images/favicon.png?v=corn3">
-  <link rel="stylesheet" href="css/style.css?v=2.1.0">
+  <link rel="stylesheet" href="css/style.css?v=2.2.0">
 </head>
 <body>
 
@@ -181,83 +181,91 @@
       </div>
 
       <!-- Section: Anatomy of a Corn Kernel -->
-      <div style="background: #FFFFFF; border-radius: 20px; padding: 35px; border: 1px solid #EBE3D3; margin-bottom: 45px;">
-        <h2 style="color: var(--color-forest); font-size: 1.6rem; margin-bottom: 10px; text-align: center;">Anatomy of a Maize Kernel</h2>
-        <p style="text-align: center; color: #5B665E; font-size: 0.95rem; max-width: 750px; margin: 0 auto 30px;">
-          Understanding how corn grits are extracted requires looking inside a single maize kernel. True corn grits are formed exclusively from the pristine starchy endosperm:
+      <div class="anatomy-card-wrapper">
+        <h2 style="color: var(--color-forest); font-size: clamp(1.3rem, 3.2vw, 1.6rem); margin-bottom: 8px; text-align: center;">Anatomy of a Maize Kernel</h2>
+        <p style="text-align: center; color: #5B665E; font-size: 0.92rem; max-width: 750px; margin: 0 auto 20px;">
+          True corn grits are extracted exclusively from the pristine starchy endosperm:
         </p>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-          <div style="background: #FAF8F2; border-radius: 14px; padding: 22px; border-left: 4px solid #FAA61A;">
-            <div style="font-size: 0.8rem; font-weight: 700; color: #FAA61A; text-transform: uppercase;">80% – 84% OF KERNEL</div>
-            <h3 style="color: #163E28; font-size: 1.2rem; margin: 4px 0 8px;">The Endosperm (Corn Grits Source)</h3>
-            <p style="font-size: 0.88rem; color: #526056; line-height: 1.6;">
-              The energy storehouse rich in complex carbohydrates and gluten-free plant proteins (zein). This is the only portion crushed and classified into commercial grits fractions.
+        <div class="anatomy-grid">
+          <div class="anatomy-item">
+            <div style="font-size: 0.78rem; font-weight: 700; color: #FAA61A; text-transform: uppercase;">80% – 84% OF KERNEL</div>
+            <h3 style="color: #163E28; font-size: 1.15rem; margin: 4px 0 6px;">The Endosperm (Grits Source)</h3>
+            <p style="font-size: 0.86rem; color: #526056; line-height: 1.55; margin: 0;">
+              The energy storehouse rich in complex carbohydrates and gluten-free zein proteins, crushed and classified into calibrated commercial grits.
             </p>
           </div>
 
-          <div style="background: #FAF8F2; border-radius: 14px; padding: 22px; border-left: 4px solid #163E28;">
-            <div style="font-size: 0.8rem; font-weight: 700; color: #163E28; text-transform: uppercase;">10% – 12% OF KERNEL</div>
-            <h3 style="color: #163E28; font-size: 1.2rem; margin: 4px 0 8px;">The Germ (Removed for Shelf Stability)</h3>
-            <p style="font-size: 0.88rem; color: #526056; line-height: 1.6;">
-              The living embryo high in corn oils. Our modern degerminators mechanically separate the germ to ensure low fat (&le;0.8%), preventing rancidity in extruded snacks and off-flavors in beer.
+          <div class="anatomy-item border-forest">
+            <div style="font-size: 0.78rem; font-weight: 700; color: #163E28; text-transform: uppercase;">10% – 12% OF KERNEL</div>
+            <h3 style="color: #163E28; font-size: 1.15rem; margin: 4px 0 6px;">The Germ (Shelf Stability)</h3>
+            <p style="font-size: 0.86rem; color: #526056; line-height: 1.55; margin: 0;">
+              High in corn oils; mechanically separated by degerminators to keep fat &le;0.8%, preventing snack rancidity and off-flavors in beer.
             </p>
           </div>
 
-          <div style="background: #FAF8F2; border-radius: 14px; padding: 22px; border-left: 4px solid #7A5B18;">
-            <div style="font-size: 0.8rem; font-weight: 700; color: #7A5B18; text-transform: uppercase;">5% – 6% OF KERNEL</div>
-            <h3 style="color: #163E28; font-size: 1.2rem; margin: 4px 0 8px;">The Pericarp Hull (Bran Jacket)</h3>
-            <p style="font-size: 0.88rem; color: #526056; line-height: 1.6;">
-              The tough outer cellulose skin protecting the grain. Aspirators and polishers cleanly strip this layer so the resulting grits cook smooth without gritty husk fibers.
+          <div class="anatomy-item border-gold-dark">
+            <div style="font-size: 0.78rem; font-weight: 700; color: #7A5B18; text-transform: uppercase;">5% – 6% OF KERNEL</div>
+            <h3 style="color: #163E28; font-size: 1.15rem; margin: 4px 0 6px;">The Pericarp Hull (Bran Jacket)</h3>
+            <p style="font-size: 0.86rem; color: #526056; line-height: 1.55; margin: 0;">
+              The fibrous outer cellulose skin, cleanly stripped by aspirators and polishers so grits cook smooth without gritty husk fibers.
             </p>
           </div>
         </div>
       </div>
 
       <!-- Section: Precision Industrial Milling Process -->
-      <div style="background: #FFFFFF; border-radius: 20px; padding: 35px; border: 1px solid #EBE3D3; margin-bottom: 45px;">
-        <div style="text-align: center; margin-bottom: 28px;">
-          <span style="color: var(--color-gold); font-size: 0.85rem; font-weight: 700; text-transform: uppercase;">Manufacturing Excellence</span>
-          <h2 style="color: var(--color-forest); font-size: 1.6rem; margin-top: 4px;">4-Step Precision Dry Milling Process</h2>
-          <p style="color: #556257; font-size: 0.95rem; max-width: 700px; margin: 6px auto 0;">
-            How raw field maize is refined into calibrated granular fractions in modern dry mills:
+      <div class="milling-card-wrapper">
+        <div style="text-align: center; margin-bottom: 20px;">
+          <span style="color: var(--color-gold); font-size: 0.82rem; font-weight: 700; text-transform: uppercase;">Manufacturing Excellence</span>
+          <h2 style="color: var(--color-forest); font-size: clamp(1.3rem, 3.2vw, 1.6rem); margin-top: 4px; margin-bottom: 6px;">4-Step Precision Dry Milling Process</h2>
+          <p style="color: #556257; font-size: 0.9rem; max-width: 700px; margin: 0 auto;">
+            How raw field maize is refined into calibrated granular fractions:
           </p>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px;">
+        <div class="milling-grid">
           <!-- Step 1 -->
-          <div style="background: #FAF8F2; border-radius: 14px; padding: 22px; border-top: 3px solid #FAA61A;">
-            <div style="font-size: 1.6rem; font-weight: 800; color: #FAA61A; margin-bottom: 6px;">01</div>
-            <strong style="color: #163E28; font-size: 1.1rem; display: block; margin-bottom: 6px;">Aspiration &amp; Destoning</strong>
-            <p style="font-size: 0.85rem; color: #556257; line-height: 1.6;">
-              Incoming non-GMO maize undergoes high-capacity vibro-sifting, air aspiration, magnetic iron separation, and density destoners to eliminate all dust, chaff, and pebbles.
+          <div class="milling-step-card">
+            <div class="milling-step-header">
+              <div class="milling-step-num" style="font-size: 1.4rem; font-weight: 800; color: #FAA61A; margin-bottom: 4px;">01</div>
+              <strong class="milling-step-title" style="color: #163E28; font-size: 1.05rem; display: block; margin-bottom: 4px;">Aspiration &amp; Destoning</strong>
+            </div>
+            <p style="font-size: 0.84rem; color: #556257; line-height: 1.55; margin: 0;">
+              Vibro-sifting, air aspiration, magnetic separators, and density destoners eliminate chaff, dust, and pebbles.
             </p>
           </div>
 
           <!-- Step 2 -->
-          <div style="background: #FAF8F2; border-radius: 14px; padding: 22px; border-top: 3px solid #163E28;">
-            <div style="font-size: 1.6rem; font-weight: 800; color: #163E28; margin-bottom: 6px;">02</div>
-            <strong style="color: #163E28; font-size: 1.1rem; display: block; margin-bottom: 6px;">Hydrothermal Conditioning</strong>
-            <p style="font-size: 0.85rem; color: #556257; line-height: 1.6;">
-              Kernels receive controlled moisture tempering. This toughens the bran and germ while keeping the hard endosperm brittle, allowing clean mechanical separation without shattering.
+          <div class="milling-step-card border-forest">
+            <div class="milling-step-header">
+              <div class="milling-step-num" style="font-size: 1.4rem; font-weight: 800; color: #163E28; margin-bottom: 4px;">02</div>
+              <strong class="milling-step-title" style="color: #163E28; font-size: 1.05rem; display: block; margin-bottom: 4px;">Hydrothermal Conditioning</strong>
+            </div>
+            <p style="font-size: 0.84rem; color: #556257; line-height: 1.55; margin: 0;">
+              Moisture tempering toughens bran and germ while keeping the endosperm brittle for clean cracking.
             </p>
           </div>
 
           <!-- Step 3 -->
-          <div style="background: #FAF8F2; border-radius: 14px; padding: 22px; border-top: 3px solid #FAA61A;">
-            <div style="font-size: 1.6rem; font-weight: 800; color: #FAA61A; margin-bottom: 6px;">03</div>
-            <strong style="color: #163E28; font-size: 1.1rem; display: block; margin-bottom: 6px;">Impact Degermination</strong>
-            <p style="font-size: 0.85rem; color: #556257; line-height: 1.6;">
-              Modern dry-degerminators crack the conditioned corn along natural fault lines, effortlessly popping out the oily germ intact and scraping off the pericarp.
+          <div class="milling-step-card">
+            <div class="milling-step-header">
+              <div class="milling-step-num" style="font-size: 1.4rem; font-weight: 800; color: #FAA61A; margin-bottom: 4px;">03</div>
+              <strong class="milling-step-title" style="color: #163E28; font-size: 1.05rem; display: block; margin-bottom: 4px;">Impact Degermination</strong>
+            </div>
+            <p style="font-size: 0.84rem; color: #556257; line-height: 1.55; margin: 0;">
+              Degerminators crack corn along natural fault lines, popping out the oily germ intact and stripping the pericarp.
             </p>
           </div>
 
           <!-- Step 4 -->
-          <div style="background: #FAF8F2; border-radius: 14px; padding: 22px; border-top: 3px solid #163E28;">
-            <div style="font-size: 1.6rem; font-weight: 800; color: #163E28; margin-bottom: 6px;">04</div>
-            <strong style="color: #163E28; font-size: 1.1rem; display: block; margin-bottom: 6px;">Plansifter Grading</strong>
-            <p style="font-size: 0.85rem; color: #556257; line-height: 1.6;">
-              Multi-deck rotary plansifters pass granules through calibrated wire meshes, segregating them into standard codes: Grits 101, 101A, 108, 112, Meal, Flour, and Broken.
+          <div class="milling-step-card border-forest">
+            <div class="milling-step-header">
+              <div class="milling-step-num" style="font-size: 1.4rem; font-weight: 800; color: #163E28; margin-bottom: 4px;">04</div>
+              <strong class="milling-step-title" style="color: #163E28; font-size: 1.05rem; display: block; margin-bottom: 4px;">Plansifter Grading</strong>
+            </div>
+            <p style="font-size: 0.84rem; color: #556257; line-height: 1.55; margin: 0;">
+              Rotary plansifters sort fractions through calibrated meshes into standard codes (101, 101A, 108, 112, Meal &amp; Flour).
             </p>
           </div>
         </div>

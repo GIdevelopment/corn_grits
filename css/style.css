@@ -1279,7 +1279,9 @@ a {
 
 @media (max-width: 600px) {
   .about-features-row {
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
   }
 }
 
@@ -3762,23 +3764,52 @@ textarea {
     text-align: center;
   }
 
-  /* About Section Feature Badges */
+  /* About Section Feature Badges - Mobile Compact Horizontal Row */
   .about-features-row {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
   }
 
   .about-feature-col {
-    padding: 14px 16px;
-    flex-direction: row;
+    padding: 10px 6px;
+    flex-direction: column;
     align-items: center;
-    text-align: left;
-    gap: 14px;
+    text-align: center;
+    gap: 4px;
+    border-radius: 12px;
+  }
+
+  .about-feature-col .feature-circle {
+    width: 38px;
+    height: 38px;
+    margin-bottom: 2px;
+  }
+
+  .about-feature-col .feature-circle svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .about-feature-col .feature-title {
+    font-size: 0.74rem;
+    line-height: 1.15;
+  }
+
+  .about-feature-col .feature-subtitle {
+    display: none;
   }
 
   .about-chips-row {
     justify-content: center;
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+
+  .about-chip {
+    font-size: 0.72rem;
+    padding: 4px 10px;
   }
 }
 
@@ -3941,6 +3972,132 @@ textarea {
 
 
 
+
+/* --------------------------------------------------------------------------
+   Anatomy & Manufacturing Excellence Cards (Responsive & Mobile-Compact)
+   -------------------------------------------------------------------------- */
+.anatomy-card-wrapper,
+.milling-card-wrapper {
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: clamp(20px, 3.5vw, 35px);
+  border: 1px solid #EBE3D3;
+  margin-bottom: clamp(24px, 4vw, 45px);
+  box-shadow: 0 4px 18px rgba(22, 62, 40, 0.04);
+}
+
+.anatomy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.anatomy-item {
+  background: #FAF8F2;
+  border-radius: 14px;
+  padding: 20px;
+  border-left: 4px solid #FAA61A;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.anatomy-item.border-forest {
+  border-left-color: #163E28;
+}
+
+.anatomy-item.border-gold-dark {
+  border-left-color: #7A5B18;
+}
+
+.milling-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.milling-step-card {
+  background: #FAF8F2;
+  border-radius: 14px;
+  padding: 20px;
+  border-top: 3px solid #FAA61A;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.milling-step-card.border-forest {
+  border-top-color: #163E28;
+}
+
+@media (max-width: 680px) {
+  .anatomy-card-wrapper,
+  .milling-card-wrapper {
+    padding: 18px 14px;
+    border-radius: 16px;
+    margin-bottom: 24px;
+  }
+
+  .anatomy-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .anatomy-item {
+    padding: 14px 14px 14px 16px;
+    border-radius: 12px;
+  }
+
+  .anatomy-item h3 {
+    font-size: 1.05rem !important;
+    margin: 2px 0 6px !important;
+  }
+
+  .anatomy-item p {
+    font-size: 0.84rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .milling-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .milling-step-card {
+    padding: 14px 16px;
+    border-radius: 12px;
+    border-top: none;
+    border-left: 4px solid #FAA61A;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .milling-step-card.border-forest {
+    border-left-color: #163E28;
+    border-top: none;
+  }
+
+  .milling-step-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .milling-step-num {
+    font-size: 1.25rem !important;
+    margin-bottom: 0 !important;
+    line-height: 1;
+    min-width: 28px;
+  }
+
+  .milling-step-title {
+    font-size: 0.98rem !important;
+    margin-bottom: 0 !important;
+  }
+
+  .milling-step-card p {
+    font-size: 0.83rem !important;
+    line-height: 1.5 !important;
+    margin-top: 2px;
+  }
+}
 
 /* --------------------------------------------------------------------------
    11b. Community Recipes & Recipe Upload Feature
